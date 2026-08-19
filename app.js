@@ -43,8 +43,6 @@ function initTheme() {
     
     htmlRoot.setAttribute('data-theme', nextTheme.id);
     localStorage.setItem('vasu_portfolio_theme', nextTheme.id);
-    
-    showToast(`Switched Theme: ${nextTheme.name}`);
   });
 }
 
@@ -654,7 +652,6 @@ function initCopyButtons() {
         await navigator.clipboard.writeText(textToCopy);
         btn.innerHTML = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-secondary);"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
         btn.classList.add('copied');
-        showToast(`Copied to clipboard: ${textToCopy}`);
 
         setTimeout(() => {
           btn.innerHTML = originalHTML;
@@ -667,7 +664,6 @@ function initCopyButtons() {
         textArea.select();
         document.execCommand('copy');
         document.body.removeChild(textArea);
-        showToast(`Copied to clipboard: ${textToCopy}`);
       }
     });
   });
@@ -745,6 +741,8 @@ function initToastDemoButtons() {
 function showToast(message, type = 'info') {
   const container = document.getElementById('toastContainer');
   if (!container) return;
+
+  container.innerHTML = ''; // Prevent toast stacking
 
   const toast = document.createElement('div');
   toast.className = 'toast';
