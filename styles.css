@@ -943,13 +943,13 @@ a {
 }
 
 .terminal-body {
-  height: 385px;
-  min-height: 385px;
-  max-height: 385px;
-  padding: 1.35rem 1.6rem;
+  height: 330px;
+  min-height: 330px;
+  max-height: 330px;
+  padding: 1.15rem 1.45rem;
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  line-height: 1.75;
+  font-size: 0.875rem;
+  line-height: 1.68;
   color: var(--text-secondary);
   overflow: hidden;
   scrollbar-width: none;
@@ -965,8 +965,8 @@ a {
 
 .code-line {
   display: block;
-  height: 1.75em;
-  line-height: 1.75em;
+  height: 1.68em;
+  line-height: 1.68em;
   white-space: pre;
 }
 
