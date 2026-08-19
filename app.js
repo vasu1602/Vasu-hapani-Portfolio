@@ -1116,7 +1116,7 @@ function initTerminalTypewriter() {
     [
       { text: "  internship", cls: "code-prop" },
       { text: ': ' },
-      { text: '"6Origin (15 Weeks Web Dev)"', cls: "code-str" },
+      { text: '"6Origin (15 Wk Web Dev)"', cls: "code-str" },
       { text: ',' }
     ],
     [
@@ -1134,11 +1134,9 @@ function initTerminalTypewriter() {
     ],
     [
       { text: '    ' },
-      { text: '"JavaScript (ES6+)"', cls: "code-str" },
-      { text: ', ' },
       { text: '"Tailwind CSS"', cls: "code-str" },
       { text: ', ' },
-      { text: '"HTML5/CSS3"', cls: "code-str" }
+      { text: '"JavaScript (ES6+)"', cls: "code-str" }
     ],
     [
       { text: '  ],' }
@@ -1146,13 +1144,13 @@ function initTerminalTypewriter() {
     [
       { text: "  location", cls: "code-prop" },
       { text: ': ' },
-      { text: '"Vadodara, Gujarat (Parul University)"', cls: "code-str" },
+      { text: '"Vadodara, Gujarat (Parul Univ)"', cls: "code-str" },
       { text: ',' }
     ],
     [
       { text: "  passion", cls: "code-prop" },
       { text: ': ' },
-      { text: '"Building responsive, high-performance UI/UX"', cls: "code-str" },
+      { text: '"Building high-performance UI/UX"', cls: "code-str" },
       { text: ',' }
     ],
     [
