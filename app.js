@@ -49,13 +49,33 @@ function initTheme() {
 }
 
 /* ==========================================================================
-   2. Navigation & Mobile Menu & Active Spy
+   2. Navigation & Mobile Menu & Active Spy & Scroll Control
    ========================================================================== */
 function initNavigation() {
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const navLinks = document.getElementById('navLinks');
   const navItems = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section[id]');
+
+  // Disable browser automatic scroll restoration to previous stale hash (e.g. #contact)
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  // Ensure fresh page visits and reloads start at the top Hero section
+  const currentHash = window.location.hash;
+  if (!currentHash || currentHash === '#contact' || currentHash === '#hero') {
+    window.scrollTo(0, 0);
+    if (currentHash === '#contact' || currentHash === '#hero') {
+      history.replaceState(null, document.title, window.location.pathname + window.location.search);
+    }
+  }
+
+  window.addEventListener('load', () => {
+    if (!window.location.hash || window.location.hash === '#contact' || window.location.hash === '#hero') {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+  });
 
   if (mobileMenuBtn && navLinks) {
     mobileMenuBtn.addEventListener('click', () => {
@@ -68,6 +88,20 @@ function initNavigation() {
       });
     });
   }
+
+  // Smooth scroll for all internal anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        e.preventDefault();
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+        history.pushState(null, '', targetId);
+      }
+    });
+  });
 
   const observerOptions = {
     root: null,
