@@ -535,7 +535,7 @@ const projectData = {
     ],
     github: 'https://github.com/vasu1602/apex-tournament',
     overview: 'High-octane real-time racing tournament auction platform featuring dynamic team purse budgeting, live driver auction gavel, role delegation, multi-window telemetry sync via BroadcastChannel API, and an animated 60+ FPS speedway canvas background.',
-    techStack: ['JavaScript (ES6+)', 'HTML5 Canvas (60FPS)', 'BroadcastChannel API', 'CSS3 Animations', 'State Machines', 'Vercel Serverless'],
+    techStack: ['JavaScript', 'HTML', 'CSS', 'Realtime', 'Vercel'],
     architecture: 'Decoupled event-driven client state machine synchronized across browser windows in real-time with BroadcastChannel and Vercel serverless persistence.',
     features: [
       'Engineered a live auctioneer & spectator bidding arena with real-time gavel hammer-down validation.',
