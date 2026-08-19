@@ -563,12 +563,18 @@ function initProjectModals() {
       });
 
       projectModal.classList.add('open');
+      document.body.classList.add('modal-open');
       document.body.style.overflow = 'hidden';
+      const aura = document.getElementById('cursorGlowAura');
+      const dot = document.getElementById('cursorDot');
+      if (aura) aura.style.opacity = '0';
+      if (dot) dot.style.opacity = '0';
     });
   });
 
   function closeProjectModal() {
     projectModal.classList.remove('open');
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
   }
 
@@ -599,11 +605,17 @@ function initResumeModal() {
 
   function openResume() {
     resumeModal.classList.add('open');
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
+    const aura = document.getElementById('cursorGlowAura');
+    const dot = document.getElementById('cursorDot');
+    if (aura) aura.style.opacity = '0';
+    if (dot) dot.style.opacity = '0';
   }
 
   function closeResume() {
     resumeModal.classList.remove('open');
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
   }
 

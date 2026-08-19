@@ -297,6 +297,31 @@ body {
   }
 }
 
+/* Disable Custom Cursor Follower & Glow inside Modals (Resume / Projects) */
+body.modal-open .cursor-dot,
+body.modal-open .cursor-glow-aura,
+.modal-overlay.open ~ .cursor-dot,
+.modal-overlay.open ~ .cursor-glow-aura {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.modal-overlay,
+.modal-container,
+.resume-sheet,
+.resume-sheet * {
+  cursor: auto;
+}
+
+.modal-close-btn,
+.modal-header .btn,
+.resume-sheet a,
+.resume-sheet button {
+  cursor: pointer;
+}
+
 /* Background Ambient Glow - Dynamic Floating Aurora Nebula */
 .ambient-glow {
   position: fixed;
