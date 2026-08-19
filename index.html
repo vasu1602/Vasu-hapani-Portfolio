@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Hapani Vasu - Full Stack Web Developer specializing in React.js, Node.js, Express.js, MongoDB, and Tailwind CSS.">
+  <meta name="keywords" content="Vasu Hapani, Hapani Vasu, Full Stack Developer, React Developer, Node.js, Express.js, MongoDB, Parul University, 6Origin">
+  <meta name="author" content="Hapani Vasu">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Hapani Vasu | Full Stack Web Developer">
+  <meta property="og:description" content="Portfolio of Hapani Vasu - Full Stack Developer experienced in MERN stack, REST APIs, and JWT Authentication.">
+  <meta property="og:type" content="website">
+
+  <title>Hapani Vasu | Full Stack Web Developer Portfolio</title>
+
+  <!-- Google Fonts & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563EB'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='48' fill='white'>VH</text></svg>">
+</head>
+<body>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <!-- Interactive Cursor-Follow Canvas & Aura -->
+  <canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
+  <div class="cursor-glow-aura" id="cursorGlowAura" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- ================= Header & Navbar ================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="#hero" class="brand-logo" id="brandLogo">
+          <span class="brand-monogram">VH</span>
+          <div class="brand-text">
+            <span class="brand-name">Hapani Vasu</span>
+            <span class="brand-title">Full Stack Developer</span>
+          </div>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about" class="nav-link" id="navAbout">About</a></li>
+          <li><a href="#skills" class="nav-link" id="navSkills">Skills</a></li>
+          <li><a href="#projects" class="nav-link" id="navProjects">Projects</a></li>
+          <li><a href="#experience" class="nav-link" id="navExperience">Experience</a></li>
+          <li><a href="#education" class="nav-link" id="navEducation">Education</a></li>
+          <li><a href="#contact" class="nav-link" id="navContact">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="btn-theme-toggle" id="themeToggleBtn" aria-label="Toggle dark/light theme" title="Toggle Theme">
+            <!-- Moon Icon -->
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <!-- Sun Icon -->
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+
+          <button class="btn btn-outline btn-sm" id="openResumeNavBtn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            Resume
+          </button>
+
+          <a href="#contact" class="btn btn-primary btn-sm">Hire Me</a>
+
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= Main Content ================= -->
+  <main>
+    <!-- Hero Section -->
+    <section class="section hero-section" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-status-pill">
+              <span class="status-indicator"></span>
+              <span>Available for Full-Time & Frontend / Full Stack Roles</span>
+            </div>
+
+            <h1 class="hero-title">
+              Building scalable web apps with <span class="hero-title-highlight">React.js & Node.js</span>.
+            </h1>
+
+            <p class="hero-description">
+              Hi, I'm <strong>Hapani Vasu</strong> — a passionate Full Stack Developer with hands-on experience in building production-ready applications, secure REST APIs, JWT authentication, and responsive modern interfaces.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-primary btn-lg" id="heroProjectsBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                View Projects
+              </a>
+              <button class="btn btn-secondary btn-lg" id="heroResumeBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                View Resume
+              </button>
+              <a href="#contact" class="btn btn-outline btn-lg" id="heroContactBtn">Contact Me</a>
+            </div>
+
+            <div class="hero-stats-row">
+              <div class="stat-box">
+                <span class="stat-number">15 Weeks</span>
+                <span class="stat-label">Full Stack Internship at 6Origin</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-number">2+ Apps</span>
+                <span class="stat-label">Production & Agile Systems Built</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-number">B.Tech '26</span>
+                <span class="stat-label">Parul University Specialization</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Visual: Developer Terminal Card -->
+          <div class="hero-visual">
+            <div class="terminal-card">
+              <div class="terminal-header">
+                <div class="terminal-dots">
+                  <span class="dot dot-red"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-green"></span>
+                </div>
+                <span class="terminal-title">vasu-profile.json — MERN Stack</span>
+                <span style="width: 40px;"></span>
+              </div>
+              <div class="terminal-body">
+                <span class="code-line"><span class="code-keyword">const</span> <span class="code-prop">developer</span> = {</span>
+                <span class="code-line">&nbsp;&nbsp;<span class="code-prop">name</span>: <span class="code-str">"Hapani Vasu"</span>,</span>
+                <span class="code-line">&nbsp;&nbsp;<span class="code-prop">role</span>: <span class="code-str">"Full Stack / Frontend Developer"</span>,</span>
+                <span class="code-line">&nbsp;&nbsp;<span class="code-prop">internship</span>: <span class="code-str">"6Origin (15 Weeks Web Dev)"</span>,</span>
+                <span class="code-line">&nbsp;&nbsp;<span class="code-prop">coreStack</span>: [</span>
+                <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"React.js"</span>, <span class="code-str">"Node.js"</span>, <span class="code-str">"Express.js"</span>,</span>
+                <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"Tailwind CSS"</span>, <span class="code-str">"MongoDB"</span>, <span class="code-str">"JWT"</span></span>
+                <span class="code-line">&nbsp;&nbsp;],</span>
+                <span class="code-line">&nbsp;&nbsp;<span class="code-prop">location</span>: <span class="code-str">"Vadodara, Gujarat (Parul University)"</span>,</span>
+                <span class="code-line">&nbsp;&nbsp;<span class="code-prop">passion</span>: <span class="code-str">"Building end-to-end user-first platforms"</span>,</span>
+                <span class="code-line">&nbsp;&nbsp;<span class="code-prop">readyToJoin</span>: <span class="code-num">true</span></span>
+                <span class="code-line">};</span>
+              </div>
+              <div class="terminal-footer">
+                <span class="tech-badge-inline">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Verified Experience
+                </span>
+                <span>Node.js / React.js / Express</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">About Me</div>
+          <h2 class="section-title">Driven by Clean Code & Engineering Excellence</h2>
+          <p class="section-subtitle">A fresher engineer with real-world project experience and industry internship track record.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <h3 class="about-heading">Who I Am</h3>
+            <p class="about-text">
+              I am a <strong>Full Stack Developer</strong> specializing in React.js, Node.js, Express.js, and modern CSS/Tailwind. I have real-world experience building end-to-end full-stack web applications, architecting RESTful APIs, and implementing robust user authentication systems.
+            </p>
+            <p class="about-text">
+              During my 15-week internship as a Web Developer at <strong>6Origin</strong>, I individually created an end-to-end luxury car booking application from scratch, handling both the responsive frontend and secure backend architecture.
+            </p>
+            <p class="about-text">
+              I hold a Diploma in CSE and am completing my B.Tech in CSE at <strong>Parul University</strong>. I am eager to join an innovative engineering team where I can contribute immediately.
+            </p>
+          </div>
+
+          <div class="about-highlights-grid">
+            <div class="highlight-card">
+              <div class="highlight-icon-wrap">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              </div>
+              <h4 class="highlight-title">Full Stack Mastery</h4>
+              <p class="highlight-desc">Seamless integration between React frontend components and high-throughput Node.js/Express backends.</p>
+            </div>
+
+            <div class="highlight-card">
+              <div class="highlight-icon-wrap">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              </div>
+              <h4 class="highlight-title">Secure Authentication</h4>
+              <p class="highlight-desc">Implementation of JWT (JSON Web Tokens) session handling, role-based access control, and Firebase Storage.</p>
+            </div>
+
+            <div class="highlight-card">
+              <div class="highlight-icon-wrap">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              </div>
+              <h4 class="highlight-title">Responsive UI/UX</h4>
+              <p class="highlight-desc">Pixel-perfect, mobile-first web designs utilizing Tailwind CSS and modular CSS architectures.</p>
+            </div>
+
+            <div class="highlight-card">
+              <div class="highlight-icon-wrap">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <h4 class="highlight-title">Agile & Collaboration</h4>
+              <p class="highlight-desc">Experience in 4-person Agile team sprints, Git version control, sprint planning, and rapid feature delivery.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">Technical Stack</div>
+          <h2 class="section-title">Skills & Technologies</h2>
+        </div>
+
+        <!-- Skills Controls (Filter & View Switcher) -->
+        <div class="skills-control-bar">
+          <!-- Filter Bar -->
+          <div class="skills-filter-bar" id="skillsFilterBar">
+            <button class="filter-btn active" data-filter="all">All Skills</button>
+            <button class="filter-btn" data-filter="frontend">Frontend</button>
+            <button class="filter-btn" data-filter="backend">Backend & DB</button>
+            <button class="filter-btn" data-filter="tools">Tools & Git</button>
+          </div>
+
+          <!-- View Mode Toggle -->
+          <div class="skills-view-toggle" id="skillsViewToggle">
+            <button class="view-toggle-btn active" id="viewArenaBtn" title="Interactive Bubble View">
+              <span>Bubble View</span>
+            </button>
+            <button class="view-toggle-btn" id="viewGridBtn" title="Standard Grid Matrix View">
+              <span>Grid View</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full-Width Interactive Skills Physics Arena -->
+      <div class="skills-arena-fullwidth" id="skillsArenaContainer">
+        <canvas id="skillsArenaCanvas"></canvas>
+      </div>
+
+      <div class="container">
+        <!-- Skills Grid (Toggleable) -->
+        <div class="skills-grid" id="skillsGrid" style="display: none;">
+          <!-- React.js -->
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-icon-box">
+              <svg width="26" height="26" viewBox="0 0 115.3 100" fill="none">
+                <ellipse cx="57.65" cy="50" rx="14" ry="46.5" transform="rotate(30 57.65 50)" stroke="#61DAFB" stroke-width="6"/>
+                <ellipse cx="57.65" cy="50" rx="14" ry="46.5" transform="rotate(90 57.65 50)" stroke="#61DAFB" stroke-width="6"/>
+                <ellipse cx="57.65" cy="50" rx="14" ry="46.5" transform="rotate(150 57.65 50)" stroke="#61DAFB" stroke-width="6"/>
+                <circle cx="57.65" cy="50" r="8" fill="#61DAFB"/>
+              </svg>
+            </div>
+            <div class="skill-info">
+              <span class="skill-name">React.js</span>
+              <span class="skill-category-tag">Frontend • Hooks, State & UI</span>
+            </div>
+          </div>
+
+          <!-- JavaScript -->
+          <div class="skill-card" data-category="frontend backend">
+            <div class="skill-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <rect width="24" height="24" rx="3" fill="#F7DF1E"/>
+                <path d="M12.5 17.5c.5.8 1.2 1.3 2.3 1.3 1.2 0 1.9-.6 1.9-1.5 0-1-.8-1.4-2.2-2l-.7-.3c-2.1-.9-3.5-2-3.5-4.4 0-2.2 1.7-3.9 4.3-3.9 1.9 0 3.2.7 4.1 2.3l-2 1.3c-.5-.8-1-1.2-2.1-1.2-.9 0-1.6.6-1.6 1.3 0 .8.6 1.2 1.9 1.8l.7.3c2.4 1 3.9 2.2 3.9 4.7 0 2.7-2.1 4.2-4.7 4.2-2.6 0-4.3-1.3-5-2.9l2.3-1.2zm-6.6.2c.4.7.8 1.2 1.7 1.2.8 0 1.4-.3 1.4-1.7V6.9h2.8v10.4c0 2.8-1.7 4-4 4-2.2 0-3.6-1.1-4.3-2.6l2.4-1z" fill="#000000"/>
+              </svg>
+            </div>
+            <div class="skill-info">
+              <span class="skill-name">JavaScript</span>
+              <span class="skill-category-tag">Core • ES6+, Async & DOM</span>
+            </div>
+          </div>
+
+          <!-- Node.js -->
+          <div class="skill-card" data-category="backend">
+            <div class="skill-icon-box">
+              <svg width="25" height="25" viewBox="0 0 32 32">
+                <path fill="#539E43" d="M16 2.5l12 6.9v13.8l-12 6.9-12-6.9v-13.8z"/>
+                <path fill="#FFFFFF" d="M15.4 10.3c-.4 0-.8.1-1.1.3l-4 2.3c-.4.2-.6.7-.6 1.1v4.6c0 .5.2.9.6 1.1l4 2.3c.3.2.7.3 1.1.3.4 0 .8-.1 1.1-.3l4-2.3c.4-.2.6-.7.6-1.1v-4.6c0-.5-.2-.9-.6-1.1l-4-2.3c-.3-.2-.7-.3-1.1-.3zm-.2 2.1l3.2 1.8-3.2 1.8-3.2-1.8 3.2-1.8zm-3.8 3.3l3.2 1.8v3.7l-3.2-1.8v-3.7zm4.4 5.5v-3.7l3.2-1.8v3.7l-3.2 1.8z"/>
+              </svg>
+            </div>
+            <div class="skill-info">
+              <span class="skill-name">Node.js</span>
+              <span class="skill-category-tag">Backend • Runtime & APIs</span>
+            </div>
+          </div>
+
+          <!-- HTML5 -->
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <path fill="#E34F26" d="M1.5 0h21l-1.9 21.3L12 24l-8.6-2.7z"/>
+                <path fill="#EF652A" d="M12 22.1l7.1-2.2 1.6-18H12z"/>
+                <path fill="#ECECEC" d="M12 9.5H8.3l-.2-2.7H12V4.3H5.3l.8 8.1H12zm0 7.3l-3.9-1-.3-3.2H5.3l.5 5.8 6.2 1.7z"/>
+                <path fill="#FFFFFF" d="M12 9.5h3.7l-.3 3.9-3.4.9v2.9l6.2-1.7.5-5.9H12zm0-5.2v2.5h6.4l.2-2.5z"/>
+              </svg>
+            </div>
+            <div class="skill-info">
+              <span class="skill-name">HTML5</span>
+              <span class="skill-category-tag">Frontend • Semantic Structure</span>
+            </div>
+          </div>
+
+          <!-- CSS3 -->
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <path fill="#1572B6" d="M1.5 0h21l-1.9 21.3L12 24l-8.6-2.7z"/>
+                <path fill="#33A9DC" d="M12 22.1l7.1-2.2 1.6-18H12z"/>
+                <path fill="#ECECEC" d="M12 9.5H8.3l-.2-2.7H12V4.3H5.3l.8 8.1H12zm0 7.3l-3.9-1-.3-3.2H5.3l.5 5.8 6.2 1.7z"/>
+                <path fill="#FFFFFF" d="M12 9.5h3.7l-.3 3.9-3.4.9v2.9l6.2-1.7.5-5.9H12zm0-5.2v2.5h6.4l.2-2.5z"/>
+              </svg>
+            </div>
+            <div class="skill-info">
+              <span class="skill-name">CSS3</span>
+              <span class="skill-category-tag">Frontend • Styling & Flexbox</span>
+            </div>
+          </div>
+
+          <!-- Bootstrap -->
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <path fill="#7952B3" d="M3.6 0h16.8C22.4 0 24 1.6 24 3.6v16.8c0 2-1.6 3.6-3.6 3.6H3.6C1.6 24 0 22.4 0 20.4V3.6C0 1.6 1.6 0 3.6 0z"/>
+                <path fill="#FFFFFF" d="M15.4 12.3c.8-.6 1.3-1.5 1.3-2.6 0-2.2-1.8-3.7-4.4-3.7H7.5v12h5.3c2.7 0 4.7-1.6 4.7-3.9 0-1.4-.8-2.5-2.1-3.1v-.1zm-4.7-4c1.1 0 1.9.7 1.9 1.8s-.8 1.8-1.9 1.8h-2.1V8.3h2.1zm.4 7.4h-2.5v-3.7h2.5c1.3 0 2.2.8 2.2 2s-.9 1.7-2.2 1.7z"/>
+              </svg>
+            </div>
+            <div class="skill-info">
+              <span class="skill-name">Bootstrap</span>
+              <span class="skill-category-tag">Frontend • Responsive Grids</span>
+            </div>
+          </div>
+
+          <!-- Tailwind CSS -->
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-icon-box">
+              <svg width="25" height="25" viewBox="0 0 24 24">
+                <path fill="#06B6D4" d="M12 6c-2.4 0-3.9 1.2-4.5 3.6 1-.8 2.1-1.1 3.3-.8.7.2 1.2.7 1.7 1.3C13.4 11.2 14.8 13 18 13c2.4 0 3.9-1.2 4.5-3.6-1 .8-2.1 1.1-3.3.8-.7-.2-1.2-.7-1.7-1.3C16.6 7.8 15.2 6 12 6zm-6 7c-2.4 0-3.9 1.2-4.5 3.6 1-.8 2.1-1.1 3.3-.8.7.2 1.2.7 1.7 1.3 1 1.1 2.4 2.9 5.5 2.9 2.4 0 3.9-1.2 4.5-3.6-1 .8-2.1 1.1-3.3.8-.7-.2-1.2-.7-1.7-1.3-1-1.1-2.4-2.9-5.5-2.9z"/>
+              </svg>
+            </div>
+            <div class="skill-info">
+              <span class="skill-name">Tailwind CSS</span>
+              <span class="skill-category-tag">Frontend • Modern Utility UI</span>
+            </div>
+          </div>
+
+          <!-- MongoDB -->
+          <div class="skill-card" data-category="backend">
+            <div class="skill-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <path fill="#47A248" d="M12 0C12 0 6.5 6.5 6.5 13.5c0 4.1 2.4 7.7 5.5 9.8.4-.5.8-1 1-1.7V.8c-.3-.3-.7-.6-1-.8zm1 23.3c3.1-2.1 5.5-5.7 5.5-9.8 0-7-5.5-13.5-5.5-13.5v23.3z"/>
+              </svg>
+            </div>
+            <div class="skill-info">
+              <span class="skill-name">MongoDB</span>
+              <span class="skill-category-tag">Database • NoSQL & Schemas</span>
+            </div>
+          </div>
+
+          <!-- Git & GitHub -->
+          <div class="skill-card" data-category="tools">
+            <div class="skill-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <path fill="#F05032" d="M23.5 10.7L13.3.5c-.7-.7-1.8-.7-2.5 0L8.5 2.8 11 5.3c.7-.2 1.6 0 2.2.6.6.6.8 1.4.6 2.2l2.4 2.4c.8-.2 1.6 0 2.2.6 1 1 1 2.5 0 3.5-.9 1-2.5 1-3.5 0-.7-.7-.9-1.6-.7-2.4L11.8 9.8v5.5c.2.2.3.4.4.7 1 1 1 2.5 0 3.5-1 1-2.5 1-3.5 0-1-1-1-2.5 0-3.5.3-.3.8-.5 1.3-.6V9.6c-.5-.1-1-.3-1.3-.6-.7-.7-.9-1.6-.7-2.4L5.6 4.2.5 9.3c-.7.7-.7 1.8 0 2.5l10.2 10.2c.7.7 1.8.7 2.5 0l10.3-10.3c.7-.7.7-1.8 0-2.5z"/>
+              </svg>
+            </div>
+            <div class="skill-info">
+              <span class="skill-name">Git & GitHub</span>
+              <span class="skill-category-tag">Tools • Version Control</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">Portfolio Showcase</div>
+          <h2 class="section-title">Featured Full-Stack Projects</h2>
+          <p class="section-subtitle">Real-world applications engineered from initial concept to full implementation.</p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1: Luxury Car Rental -->
+          <article class="project-card" id="projectCard1">
+            <div class="project-media-wrap">
+              <img src="assets/images/car-rental.jpg" alt="Luxury Car Rental Web Application Preview" class="project-img">
+              <span class="project-badge-overlay">Flagship • 15-Wk Internship</span>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Luxury Car Booking & Rental Platform</h3>
+              <p class="project-description">
+                An end-to-end luxury car booking web application developed from scratch during a 15-week internship at 6Origin. Engineered the responsive UI with React.js and Tailwind CSS, backed by a secure Node.js/Express API with JWT authentication and Firebase Storage for fleet asset uploads.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">React.js</span>
+                <span class="project-tag">Tailwind CSS</span>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">Express.js</span>
+                <span class="project-tag">JWT Auth</span>
+                <span class="project-tag">Firebase</span>
+              </div>
+              <div class="project-actions">
+                <button class="btn btn-primary btn-sm btn-project-detail" data-project="car-rental">
+                  View Technical Deep Dive
+                </button>
+                <button class="btn btn-secondary btn-sm btn-demo-toast" data-name="Luxury Car Rental">
+                  Live Preview Details
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Medicine Donation Platform -->
+          <article class="project-card" id="projectCard2">
+            <div class="project-media-wrap">
+              <img src="assets/images/medicine-donation.jpg" alt="Unused Medicine Donation Platform Preview" class="project-img">
+              <span class="project-badge-overlay">Full Stack • Agile Team of 4</span>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Unused Medicine Donation Platform</h3>
+              <p class="project-description">
+                A full-stack social impact platform connecting individual donors with verified NGOs to redistribute unused medicines and address public health gaps. Built in an Agile team of 4 featuring secure login/signup, real-time donation inventory tracking, and MongoDB database management.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">HTML5 / CSS3</span>
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">Express.js</span>
+                <span class="project-tag">MongoDB</span>
+                <span class="project-tag">Agile Sprints</span>
+              </div>
+              <div class="project-actions">
+                <button class="btn btn-primary btn-sm btn-project-detail" data-project="medicine-donation">
+                  View Technical Deep Dive
+                </button>
+                <button class="btn btn-secondary btn-sm btn-demo-toast" data-name="Medicine Donation Platform">
+                  Live Preview Details
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work Experience & Education Section -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">Career & Academic Journey</div>
+          <h2 class="section-title">Experience & Education</h2>
+          <p class="section-subtitle">Real-world engineering experience paired with structured computer science education.</p>
+        </div>
+
+        <div class="timeline-dual-grid">
+          <!-- Experience Column -->
+          <div class="timeline-col">
+            <h3 class="timeline-column-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+              Work Experience
+            </h3>
+            <div class="timeline-track">
+              <!-- 6Origin Internship -->
+              <div class="timeline-card">
+                <div class="timeline-marker"></div>
+                <div class="timeline-period">Jan 2026 – Apr 2026 • 15 Weeks</div>
+                <h4 class="timeline-role">Intern as a Web Developer</h4>
+                <div class="timeline-org">6Origin</div>
+                <p class="timeline-desc">
+                  Created an end-to-end luxury car booking application from scratch, covering both frontend and backend independently within a 15-week span.
+                </p>
+                <ul class="modal-bullet-list" style="margin-top: 0.75rem; font-size: 0.875rem;">
+                  <li>Constructed responsive UI with React.js and Tailwind CSS.</li>
+                  <li>Created secure backend REST API using Node.js and Express.js.</li>
+                  <li>Implemented JWT authentication and Firebase Storage for media uploads.</li>
+                  <li>Transformed real-world business requirements into a production-ready application.</li>
+                </ul>
+                <div class="timeline-tags">
+                  <span class="project-tag">React.js</span>
+                  <span class="project-tag">Node.js</span>
+                  <span class="project-tag">Express.js</span>
+                  <span class="project-tag">Tailwind</span>
+                  <span class="project-tag">JWT</span>
+                  <span class="project-tag">Firebase</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education Column -->
+          <div class="timeline-col" id="education">
+            <h3 class="timeline-column-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+              Education
+            </h3>
+            <div class="timeline-track">
+              <!-- B.Tech -->
+              <div class="timeline-card">
+                <div class="timeline-marker"></div>
+                <div class="timeline-period">2023 – 2026</div>
+                <h4 class="timeline-role">B.Tech in Computer Science and Engineering</h4>
+                <div class="timeline-org">Parul University</div>
+              </div>
+
+              <!-- Diploma -->
+              <div class="timeline-card">
+                <div class="timeline-marker"></div>
+                <div class="timeline-period">2020 – 2023</div>
+                <h4 class="timeline-role">Diploma in Computer Science and Engineering</h4>
+                <div class="timeline-org">Parul University</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Hire Section -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">Get In Touch</div>
+          <h2 class="section-title">Let's Build Something Great Together</h2>
+          <p class="section-subtitle">I'm currently seeking Full Stack and Frontend Developer roles. Feel free to reach out directly or send a message!</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Direct Contact Information -->
+          <div class="contact-info-panel">
+            <!-- Email -->
+            <div class="contact-card">
+              <div class="contact-detail">
+                <div class="contact-icon-box">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div class="contact-meta">
+                  <span class="contact-label">Email Address</span>
+                  <a href="mailto:vasuhapani2005@gmail.com" class="contact-value">vasuhapani2005@gmail.com</a>
+                </div>
+              </div>
+              <button class="contact-copy-btn" data-copy="vasuhapani2005@gmail.com" title="Copy Email">Copy</button>
+            </div>
+
+            <!-- Phone -->
+            <div class="contact-card">
+              <div class="contact-detail">
+                <div class="contact-icon-box">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </div>
+                <div class="contact-meta">
+                  <span class="contact-label">Phone Number</span>
+                  <a href="tel:+919510081702" class="contact-value">+91 95100 81702</a>
+                </div>
+              </div>
+              <button class="contact-copy-btn" data-copy="+91 95100 81702" title="Copy Phone Number">Copy</button>
+            </div>
+
+            <!-- LinkedIn -->
+            <div class="contact-card">
+              <div class="contact-detail">
+                <div class="contact-icon-box">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </div>
+                <div class="contact-meta">
+                  <span class="contact-label">LinkedIn Profile</span>
+                  <a href="https://linkedin.com/in/vasu-hapani-442895259" target="_blank" rel="noopener noreferrer" class="contact-value">vasu-hapani-442895259</a>
+                </div>
+              </div>
+              <a href="https://linkedin.com/in/vasu-hapani-442895259" target="_blank" rel="noopener noreferrer" class="contact-copy-btn">Visit ↗</a>
+            </div>
+
+            <!-- Location Status -->
+            <div class="contact-card">
+              <div class="contact-detail">
+                <div class="contact-icon-box">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <div class="contact-meta">
+                  <span class="contact-label">Location / Availability</span>
+                  <span class="contact-value">Vadodara, Gujarat (Open to Relocation & Remote)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Message Form -->
+          <div class="contact-form-panel">
+            <form id="contactForm" novalidate>
+              <div class="form-group">
+                <label for="senderName" class="form-label">Your Name</label>
+                <input type="text" id="senderName" class="form-input" placeholder="e.g. John Doe / Hiring Manager" required>
+              </div>
+
+              <div class="form-group">
+                <label for="senderEmail" class="form-label">Your Email</label>
+                <input type="email" id="senderEmail" class="form-input" placeholder="e.g. recruiter@company.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="senderSubject" class="form-label">Subject / Opportunity</label>
+                <input type="text" id="senderSubject" class="form-input" placeholder="e.g. Full Stack Developer Opportunity at [Company]" required>
+              </div>
+
+              <div class="form-group">
+                <label for="senderMessage" class="form-label">Message</label>
+                <textarea id="senderMessage" class="form-textarea" placeholder="Hello Vasu, we'd like to talk about an exciting role..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" id="sendMsgBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                Send Message to Vasu
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= Footer ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="#hero" class="brand-logo">
+          <span class="brand-monogram">VH</span>
+          <span class="brand-name">Hapani Vasu</span>
+        </a>
+        <ul class="footer-nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <p class="footer-copy">
+          © 2026 Hapani Vasu. All Rights Reserved. Built with modern JavaScript, CSS, and full-stack engineering principles.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= Project Details Modal ================= -->
+  <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalProjectTitle">Project Details</h3>
+        <button class="modal-close-btn" id="closeProjectModalBtn" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body" id="modalProjectBody">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= Resume View & Print Modal ================= -->
+  <div class="modal-overlay" id="resumeModal" role="dialog" aria-modal="true" aria-labelledby="modalResumeTitle">
+    <div class="modal-container" style="max-width: 860px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalResumeTitle">Hapani Vasu — Professional Resume</h3>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <button class="btn btn-primary btn-sm btn-print-hide" id="printResumeBtn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            Print / Save PDF
+          </button>
+          <button class="modal-close-btn" id="closeResumeModalBtn" aria-label="Close modal">✕</button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding: 1.5rem; background: var(--bg-tertiary);">
+        <!-- Printable Resume Sheet -->
+        <div class="resume-sheet">
+          <div class="resume-header">
+            <div>
+              <h1 class="resume-name">HAPANI VASU</h1>
+              <div class="resume-role">Web Developer / Full Stack Developer</div>
+            </div>
+            <div class="resume-contact-block">
+              <div><strong>Phone:</strong> +91 95100 81702</div>
+              <div><strong>Email:</strong> vasuhapani2005@gmail.com</div>
+              <div><strong>LinkedIn:</strong> linkedin.com/in/vasu-hapani-442895259</div>
+              <div><strong>Education:</strong> Parul University</div>
+            </div>
+          </div>
+
+          <!-- Resume About -->
+          <div class="resume-section-title">About Me</div>
+          <p class="resume-p">
+            Full Stack Developer (Fresher) with experience in React.js, Node.js, Express.js, and Tailwind CSS, with real-world experience in developing full-stack web applications, implementing user authentication and REST APIs. Internship for 15 weeks as a full stack developer, where I have successfully developed my own web application related to luxury car rental from scratch. Looking for a job as a Full Stack or Frontend Developer where I can start contributing right away.
+          </p>
+
+          <!-- Resume Education -->
+          <div class="resume-section-title">Education</div>
+          <div class="resume-item">
+            <div class="resume-item-top">
+              <span>B.Tech in Computer Science and Engineering</span>
+              <span>2023 – 2026</span>
+            </div>
+            <div class="resume-item-sub">Parul University</div>
+          </div>
+
+          <div class="resume-item">
+            <div class="resume-item-top">
+              <span>Diploma in Computer Science and Engineering</span>
+              <span>2020 – 2023</span>
+            </div>
+            <div class="resume-item-sub">Parul University</div>
+          </div>
+
+          <!-- Resume Work Experience -->
+          <div class="resume-section-title">Work Experience</div>
+          <div class="resume-item">
+            <div class="resume-item-top">
+              <span>Intern as a Web Developer</span>
+              <span>Jan 2026 – Apr 2026 (15 Weeks)</span>
+            </div>
+            <div class="resume-item-sub">6Origin</div>
+            <p class="resume-p">
+              Created an end-to-end luxury car booking application from scratch, covering both the front end and back end individually within a 15-week span. Constructed the responsive UI using React.js and Tailwind CSS, while creating the secure back end API using Node.js and Express.js, which included authentication through JWT and Firebase Storage to manage image/file uploads. Got exposure to practical development techniques by developing a business concept into a production application.
+            </p>
+          </div>
+
+          <!-- Resume Project -->
+          <div class="resume-section-title">Projects</div>
+          <div class="resume-item">
+            <div class="resume-item-top">
+              <span>Unused Medicine Donation Platform</span>
+              <span>Team of 4 • Agile</span>
+            </div>
+            <div class="resume-item-sub">HTML5, CSS3, JavaScript, Node.js, Express.js, MongoDB</div>
+            <p class="resume-p">
+              Created and developed a full stack web application that connects individual donors with NGO's to gather and redistribute any unused medicines in order to solve a real-life public health problem using HTML5, CSS3 and JavaScript on the frontend while using MongoDB as the database. Worked as a part of a team of 4 people adopting the Agile methodology of development by splitting up our tasks into frontend and backend tasks. Added secure login/signup system along with donation tracking on the platform.
+            </p>
+          </div>
+
+          <!-- Resume Skills -->
+          <div class="resume-section-title">Technical Skills</div>
+          <div class="resume-skills-list">
+            <span class="resume-skill-badge">React.js</span>
+            <span class="resume-skill-badge">JavaScript</span>
+            <span class="resume-skill-badge">Node.js</span>
+            <span class="resume-skill-badge">HTML5</span>
+            <span class="resume-skill-badge">CSS3</span>
+            <span class="resume-skill-badge">Bootstrap</span>
+            <span class="resume-skill-badge">Tailwind CSS</span>
+            <span class="resume-skill-badge">MongoDB</span>
+            <span class="resume-skill-badge">Git & GitHub</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
