@@ -888,7 +888,7 @@ function showToast(message, type = 'info') {
 }
 
 /* ==========================================================================
-   12. Cybernetic Fluid Wave Ribbons & Bioluminescent Embers Background
+   12. Quantum Cyber-Synapse & Hyper-Dimensional Gravitational Flux Field
    ========================================================================== */
 function initGlobalBackground() {
   const canvas = document.getElementById('bgCanvas');
@@ -900,153 +900,28 @@ function initGlobalBackground() {
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
 
+  const focalLength = 650;
+  const cx = () => width / 2;
+  const cy = () => height / 2;
+
   const mouse = {
     x: width / 2,
     y: height / 2,
     targetX: width / 2,
     targetY: height / 2,
+    vx: 0,
+    vy: 0,
     speed: 0,
+    lastX: width / 2,
+    lastY: height / 2,
     isActive: false,
-    gravityRadius: 270
+    radius: 260
   };
-
-  // 1. Spacetime Warp Lattice (3D Gravitational Grid)
-  let gridPoints = [];
-  const GRID_SPACING = 68;
-  function initSpacetimeGrid() {
-    gridPoints = [];
-    const cols = Math.ceil(width / GRID_SPACING) + 2;
-    const rows = Math.ceil(height / GRID_SPACING) + 2;
-
-    for (let r = 0; r <= rows; r++) {
-      gridPoints[r] = [];
-      for (let c = 0; c <= cols; c++) {
-        const ox = (c - 1) * GRID_SPACING;
-        const oy = (r - 1) * GRID_SPACING;
-        gridPoints[r][c] = {
-          originX: ox,
-          originY: oy,
-          x: ox,
-          y: oy,
-          vx: 0,
-          vy: 0,
-          phase: Math.random() * Math.PI * 2
-        };
-      }
-    }
-  }
-
-  // 2. Tachyon Light-Trails & Quantum Comets
-  let comets = [];
-  const COMET_COUNT = Math.min(34, Math.max(18, Math.floor(width / 45)));
-  const PALETTE = [
-    { head: '#06b6d4', glow: 'rgba(6, 182, 212, 0.85)', rgb: '6, 182, 212' },
-    { head: '#a855f7', glow: 'rgba(168, 85, 247, 0.85)', rgb: '168, 85, 247' },
-    { head: '#6366f1', glow: 'rgba(99, 102, 241, 0.85)', rgb: '99, 102, 241' },
-    { head: '#38bdf8', glow: 'rgba(56, 189, 248, 0.85)', rgb: '56, 189, 248' },
-    { head: '#f59e0b', glow: 'rgba(245, 158, 11, 0.85)', rgb: '245, 158, 11' }
-  ];
-
-  function createComet() {
-    return {
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 2.8,
-      vy: (Math.random() - 0.5) * 2.8,
-      length: Math.floor(Math.random() * 14 + 10),
-      history: [],
-      color: PALETTE[Math.floor(Math.random() * PALETTE.length)],
-      pulse: Math.random() * 10,
-      size: Math.random() * 2.2 + 1.2
-    };
-  }
-
-  function initComets() {
-    comets = [];
-    for (let i = 0; i < COMET_COUNT; i++) {
-      comets.push(createComet());
-    }
-  }
-
-  // 3. Synaptic Constellation Orbs
-  let nodes = [];
-  const NODE_COUNT = Math.min(28, Math.max(14, Math.floor(width / 65)));
-  function initNodes() {
-    nodes = [];
-    for (let i = 0; i < NODE_COUNT; i++) {
-      nodes.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.95,
-        vy: (Math.random() - 0.5) * 0.95,
-        radius: Math.random() * 2.5 + 1.5,
-        color: PALETTE[i % PALETTE.length].head,
-        pulse: Math.random() * Math.PI * 2
-      });
-    }
-  }
-
-  // 4. Multi-Layer Supernova Shockwaves (Explosive Click Pulse)
-  const supernovas = [];
-  window.addEventListener('click', (e) => {
-    // Generate 3 concentric chromatic shockwave rings
-    supernovas.push({
-      x: e.clientX,
-      y: e.clientY,
-      radius: 6,
-      maxRadius: Math.max(width, height) * 0.42,
-      alpha: 1,
-      rings: [
-        { color: '#06b6d4', offset: 0, width: 3.5 },
-        { color: '#a855f7', offset: 10, width: 2.5 },
-        { color: '#f59e0b', offset: 20, width: 2.0 }
-      ],
-      sparks: Array.from({ length: 22 }, () => ({
-        angle: Math.random() * Math.PI * 2,
-        dist: 0,
-        speed: Math.random() * 9 + 4,
-        size: Math.random() * 3 + 1.5,
-        alpha: 1,
-        color: PALETTE[Math.floor(Math.random() * PALETTE.length)].head
-      }))
-    });
-
-    // Kinetic impulse to spacetime grid & nodes
-    nodes.forEach(n => {
-      const dx = n.x - e.clientX;
-      const dy = n.y - e.clientY;
-      const d = Math.hypot(dx, dy) || 1;
-      if (d < 380) {
-        const force = (1 - d / 380) * 18;
-        n.vx += (dx / d) * force;
-        n.vy += (dy / d) * force;
-      }
-    });
-
-    // Ripple into spacetime lattice
-    const rows = gridPoints.length;
-    const cols = gridPoints[0] ? gridPoints[0].length : 0;
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const pt = gridPoints[r][c];
-        const gdx = pt.x - e.clientX;
-        const gdy = pt.y - e.clientY;
-        const gDist = Math.hypot(gdx, gdy) || 1;
-        if (gDist < 300) {
-          const force = (1 - gDist / 300) * 35;
-          pt.vx += (gdx / gDist) * force;
-          pt.vy += (gdy / gDist) * force;
-        }
-      }
-    }
-  });
 
   function handleResize() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
-    initSpacetimeGrid();
-    initComets();
-    initNodes();
+    init3DElements();
   }
   window.addEventListener('resize', handleResize);
 
@@ -1086,9 +961,138 @@ function initGlobalBackground() {
     mouse.isActive = false;
   });
 
-  initSpacetimeGrid();
-  initComets();
-  initNodes();
+  // Supernova Chromatic Blast on Click
+  const supernovas = [];
+  window.addEventListener('click', (e) => {
+    supernovas.push({
+      x: e.clientX,
+      y: e.clientY,
+      radius: 5,
+      maxRadius: 280,
+      alpha: 0.85,
+      growthSpeed: 8,
+      chromaOffset: 0
+    });
+
+    // Kinetic impulse to 3D crystals and quantum particles
+    quantumNodes.forEach(n => {
+      const p = project3D(n.x, n.y, n.z);
+      const dx = p.x2d - e.clientX;
+      const dy = p.y2d - e.clientY;
+      const dist = Math.hypot(dx, dy) || 1;
+      if (dist < 320) {
+        const force = (1 - dist / 320) * 35;
+        n.vx += (dx / dist) * force;
+        n.vy += (dy / dist) * force;
+        n.vz += (Math.random() - 0.5) * force * 1.5;
+      }
+    });
+
+    crystals.forEach(c => {
+      const p = project3D(c.x, c.y, c.z);
+      const dx = p.x2d - e.clientX;
+      const dy = p.y2d - e.clientY;
+      const dist = Math.hypot(dx, dy) || 1;
+      if (dist < 360) {
+        const force = (1 - dist / 360) * 25;
+        c.vx += (dx / dist) * force;
+        c.vy += (dy / dist) * force;
+        c.rotSpeedX += (Math.random() - 0.5) * 0.08;
+        c.rotSpeedY += (Math.random() - 0.5) * 0.08;
+      }
+    });
+  });
+
+  // 3D Matrix Utilities
+  function rotate3D(v, rx, ry, rz) {
+    let y1 = v.y * Math.cos(rx) - v.z * Math.sin(rx);
+    let z1 = v.y * Math.sin(rx) + v.z * Math.cos(rx);
+    let x2 = v.x * Math.cos(ry) + z1 * Math.sin(ry);
+    let z2 = -v.x * Math.sin(ry) + z1 * Math.cos(ry);
+    let x3 = x2 * Math.cos(rz) - y1 * Math.sin(rz);
+    let y3 = x2 * Math.sin(rz) + y1 * Math.cos(rz);
+    return { x: x3, y: y3, z: z2 };
+  }
+
+  function project3D(x, y, z) {
+    const scale = focalLength / Math.max(focalLength + z, 80);
+    return {
+      x2d: cx() + x * scale,
+      y2d: cy() + y * scale,
+      scale: scale,
+      z: z
+    };
+  }
+
+  // 3D Octahedron & Hexagon Quantum Crystals
+  let crystals = [];
+  let quantumNodes = [];
+  let photonSparks = [];
+
+  function init3DElements() {
+    crystals = [];
+    quantumNodes = [];
+    photonSparks = [];
+
+    // 7 Floating 3D Cyber Crystalline Polyhedra
+    const crystalCount = width > 768 ? 7 : 4;
+    for (let i = 0; i < crystalCount; i++) {
+      const size = Math.random() * 26 + 32;
+      crystals.push({
+        x: (Math.random() - 0.5) * (width * 0.85),
+        y: (Math.random() - 0.5) * (height * 0.85),
+        z: Math.random() * 400 - 150,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        vz: (Math.random() - 0.5) * 0.3,
+        rx: Math.random() * Math.PI,
+        ry: Math.random() * Math.PI,
+        rz: Math.random() * Math.PI,
+        rotSpeedX: (Math.random() - 0.5) * 0.018 + 0.008,
+        rotSpeedY: (Math.random() - 0.5) * 0.018 + 0.008,
+        rotSpeedZ: (Math.random() - 0.5) * 0.015,
+        size: size,
+        vertices: [
+          { x: size, y: 0, z: 0 },
+          { x: -size, y: 0, z: 0 },
+          { x: 0, y: size, z: 0 },
+          { x: 0, y: -size, z: 0 },
+          { x: 0, y: 0, z: size },
+          { x: 0, y: 0, z: -size }
+        ],
+        edges: [
+          [0, 2], [0, 3], [0, 4], [0, 5],
+          [1, 2], [1, 3], [1, 4], [1, 5],
+          [2, 4], [4, 3], [3, 5], [5, 2]
+        ],
+        colorHue: Math.random() > 0.5 ? 190 : (Math.random() > 0.5 ? 275 : 330)
+      });
+    }
+
+    // 52 Hyper-Dimensional Quantum Nodes with Orbit & Velocity
+    const nodeCount = width > 768 ? 54 : 32;
+    for (let i = 0; i < nodeCount; i++) {
+      quantumNodes.push({
+        x: (Math.random() - 0.5) * (width * 1.1),
+        y: (Math.random() - 0.5) * (height * 1.1),
+        z: Math.random() * 600 - 250,
+        baseX: (Math.random() - 0.5) * (width * 1.1),
+        baseY: (Math.random() - 0.5) * (height * 1.1),
+        baseZ: Math.random() * 600 - 250,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        vz: (Math.random() - 0.5) * 0.5,
+        radius: Math.random() * 2.6 + 1.6,
+        orbitAngle: Math.random() * Math.PI * 2,
+        orbitSpeed: (Math.random() - 0.5) * 0.015,
+        orbitRadius: Math.random() * 60 + 20,
+        colorType: Math.random() > 0.6 ? '#06b6d4' : (Math.random() > 0.5 ? '#8b5cf6' : '#ec4899'),
+        pulse: Math.random() * 10
+      });
+    }
+  }
+
+  init3DElements();
 
   let isRunning = true;
   document.addEventListener('visibilitychange', () => {
@@ -1100,348 +1104,315 @@ function initGlobalBackground() {
 
   function animate() {
     if (!isRunning) return;
-    time += 1;
 
+    time += 1;
     ctx.clearRect(0, 0, width, height);
     const isLight = document.documentElement.getAttribute('data-theme') === 'light';
 
-    // Mouse spring interpolation & velocity calculation
-    const dx = mouse.targetX - mouse.x;
-    const dy = mouse.targetY - mouse.y;
-    mouse.x += dx * 0.12;
-    mouse.y += dy * 0.12;
-    mouse.speed = Math.hypot(dx, dy);
+    // Smooth Mouse Velocity & Singularity Tracking
+    const mouseDx = mouse.targetX - mouse.x;
+    const mouseDy = mouse.targetY - mouse.y;
+    mouse.x += mouseDx * 0.08;
+    mouse.y += mouseDy * 0.08;
+    mouse.speed = Math.hypot(mouseDx, mouseDy);
 
-    // ==========================================
-    // 1. UPDATE & DRAW SPACETIME GRAVITY LATTICE
-    // ==========================================
-    const rows = gridPoints.length;
-    const cols = gridPoints[0] ? gridPoints[0].length : 0;
-
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const pt = gridPoints[r][c];
-        pt.phase += 0.02;
-
-        // Ambient fluid undulating wave
-        let targetX = pt.originX + Math.sin(pt.phase + r * 0.4) * 8;
-        let targetY = pt.originY + Math.cos(pt.phase + c * 0.4) * 8;
-
-        // Gravitational Hyperbolic Well
-        if (mouse.isActive) {
-          const gdx = pt.x - mouse.x;
-          const gdy = pt.y - mouse.y;
-          const gDist = Math.hypot(gdx, gdy) || 1;
-
-          if (gDist < mouse.gravityRadius) {
-            const pullFactor = Math.pow(1 - gDist / mouse.gravityRadius, 2) * 55;
-            targetX -= (gdx / gDist) * pullFactor;
-            targetY -= (gdy / gDist) * pullFactor;
-          }
-        }
-
-        // Spring elastic physics back to target
-        pt.vx += (targetX - pt.x) * 0.08;
-        pt.vy += (targetY - pt.y) * 0.08;
-        pt.vx *= 0.82;
-        pt.vy *= 0.82;
-        pt.x += pt.vx;
-        pt.y += pt.vy;
+    // Dynamic Atmospheric Quantum Ambient Glow
+    if (mouse.isActive) {
+      const ambientGrad = ctx.createRadialGradient(
+        mouse.x, mouse.y, 10,
+        mouse.x, mouse.y, mouse.radius * 1.3
+      );
+      if (isLight) {
+        ambientGrad.addColorStop(0, 'rgba(56, 189, 248, 0.14)');
+        ambientGrad.addColorStop(0.5, 'rgba(99, 102, 241, 0.07)');
+        ambientGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      } else {
+        ambientGrad.addColorStop(0, 'rgba(6, 182, 212, 0.16)');
+        ambientGrad.addColorStop(0.5, 'rgba(139, 92, 246, 0.08)');
+        ambientGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
       }
+      ctx.fillStyle = ambientGrad;
+      ctx.fillRect(0, 0, width, height);
     }
 
-    // Render Spacetime Horizontal & Vertical Elastic Web Lines
-    ctx.save();
-    ctx.lineWidth = isLight ? 0.75 : 0.85;
-
-    // Horizontal Lines
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols - 1; c++) {
-        const p1 = gridPoints[r][c];
-        const p2 = gridPoints[r][c + 1];
-
-        // Line tension color modulation based on proximity to mouse
-        const mMidX = (p1.x + p2.x) / 2;
-        const mMidY = (p1.y + p2.y) / 2;
-        const mDist = Math.hypot(mMidX - mouse.x, mMidY - mouse.y);
-        const intensity = mouse.isActive ? Math.max(0, 1 - mDist / (mouse.gravityRadius * 1.3)) : 0;
-
-        let alpha = isLight ? 0.035 + intensity * 0.22 : 0.05 + intensity * 0.35;
-        if (intensity > 0.15) {
-          ctx.strokeStyle = isLight ? `rgba(99, 102, 241, ${alpha})` : `rgba(6, 182, 212, ${alpha})`;
-          ctx.shadowColor = isLight ? '#6366f1' : '#06b6d4';
-          ctx.shadowBlur = intensity * 8;
-        } else {
-          ctx.strokeStyle = isLight ? `rgba(148, 163, 184, ${alpha})` : `rgba(255, 255, 255, ${alpha})`;
-          ctx.shadowBlur = 0;
-        }
-
-        ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.stroke();
-      }
-    }
-
-    // Vertical Lines
-    for (let r = 0; r < rows - 1; r++) {
-      for (let c = 0; c < cols; c++) {
-        const p1 = gridPoints[r][c];
-        const p2 = gridPoints[r + 1][c];
-
-        const mMidX = (p1.x + p2.x) / 2;
-        const mMidY = (p1.y + p2.y) / 2;
-        const mDist = Math.hypot(mMidX - mouse.x, mMidY - mouse.y);
-        const intensity = mouse.isActive ? Math.max(0, 1 - mDist / (mouse.gravityRadius * 1.3)) : 0;
-
-        let alpha = isLight ? 0.035 + intensity * 0.22 : 0.05 + intensity * 0.35;
-        if (intensity > 0.15) {
-          ctx.strokeStyle = isLight ? `rgba(168, 85, 247, ${alpha})` : `rgba(168, 85, 247, ${alpha})`;
-          ctx.shadowColor = '#a855f7';
-          ctx.shadowBlur = intensity * 8;
-        } else {
-          ctx.strokeStyle = isLight ? `rgba(148, 163, 184, ${alpha})` : `rgba(255, 255, 255, ${alpha})`;
-          ctx.shadowBlur = 0;
-        }
-
-        ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.stroke();
-      }
-    }
-    ctx.restore();
-
-    // ==========================================
-    // 2. TACHYON QUANTUM COMETS & LIGHT TRAILS
-    // ==========================================
-    comets.forEach(comet => {
-      comet.pulse += 0.04;
-
-      // Slingshot gravitational acceleration near mouse
-      if (mouse.isActive) {
-        const cdx = mouse.x - comet.x;
-        const cdy = mouse.y - comet.y;
-        const cDist = Math.hypot(cdx, cdy) || 1;
-
-        if (cDist < 280) {
-          const gravForce = (1 - cDist / 280) * 0.48;
-          // Perpendicular tangential orbit component (vortex spin!)
-          comet.vx += (cdx / cDist) * gravForce - (cdy / cDist) * gravForce * 0.65;
-          comet.vy += (cdy / cDist) * gravForce + (cdx / cDist) * gravForce * 0.65;
-        }
-      }
-
-      // Max velocity clamp & friction
-      const currentSpeed = Math.hypot(comet.vx, comet.vy);
-      if (currentSpeed > 6.5) {
-        comet.vx = (comet.vx / currentSpeed) * 6.5;
-        comet.vy = (comet.vy / currentSpeed) * 6.5;
-      }
-      comet.vx *= 0.985;
-      comet.vy *= 0.985;
-
-      // Move
-      comet.x += comet.vx;
-      comet.y += comet.vy;
-
-      // Soft screen wrap
-      if (comet.x < -40) comet.x = width + 40;
-      if (comet.x > width + 40) comet.x = -40;
-      if (comet.y < -40) comet.y = height + 40;
-      if (comet.y > height + 40) comet.y = -40;
-
-      // Record trajectory history for glowing plasma tails
-      comet.history.unshift({ x: comet.x, y: comet.y });
-      if (comet.history.length > comet.length) {
-        comet.history.pop();
-      }
-
-      // Draw Glowing Plasma Ribbon Tail
-      if (comet.history.length > 2) {
-        ctx.save();
-        ctx.beginPath();
-        ctx.moveTo(comet.history[0].x, comet.history[0].y);
-        for (let i = 1; i < comet.history.length; i++) {
-          ctx.lineTo(comet.history[i].x, comet.history[i].y);
-        }
-        ctx.strokeStyle = isLight ? comet.color.head : comet.color.glow;
-        ctx.lineWidth = comet.size;
-        ctx.lineCap = 'round';
-        ctx.shadowColor = comet.color.head;
-        ctx.shadowBlur = isLight ? 4 : 12;
-        ctx.globalAlpha = isLight ? 0.35 : 0.65;
-        ctx.stroke();
-        ctx.restore();
-      }
-
-      // Draw Comet Radiant Nucleus
-      ctx.save();
-      ctx.fillStyle = '#ffffff';
-      ctx.shadowColor = comet.color.head;
-      ctx.shadowBlur = isLight ? 6 : 14;
-      ctx.beginPath();
-      ctx.arc(comet.x, comet.y, comet.size * 0.9, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    });
-
-    // ==========================================
-    // 3. SYNAPTIC LASER CONSTELLATION NODES
-    // ==========================================
-    const nodeLen = nodes.length;
-    for (let i = 0; i < nodeLen; i++) {
-      const n1 = nodes[i];
-      n1.pulse += 0.03;
-      n1.x += n1.vx;
-      n1.y += n1.vy;
-
-      if (n1.x < 0 || n1.x > width) n1.vx *= -1;
-      if (n1.y < 0 || n1.y > height) n1.vy *= -1;
-
-      // Connect nearby nodes with synaptic energy beams
-      for (let j = i + 1; j < nodeLen; j++) {
-        const n2 = nodes[j];
-        const ndx = n2.x - n1.x;
-        const ndy = n2.y - n1.y;
-        const dist = Math.hypot(ndx, ndy);
-
-        if (dist < 150) {
-          const beamAlpha = (1 - dist / 150) * (isLight ? 0.25 : 0.45);
-          ctx.save();
-          ctx.strokeStyle = isLight ? `rgba(99, 102, 241, ${beamAlpha})` : `rgba(6, 182, 212, ${beamAlpha})`;
-          ctx.lineWidth = (1 - dist / 150) * 1.6;
-          ctx.beginPath();
-          ctx.moveTo(n1.x, n1.y);
-          ctx.lineTo(n2.x, n2.y);
-          ctx.stroke();
-          ctx.restore();
-        }
-      }
-
-      // Tractor beam to cursor
-      if (mouse.isActive) {
-        const mdx = mouse.x - n1.x;
-        const mdy = mouse.y - n1.y;
-        const mDist = Math.hypot(mdx, mdy);
-        if (mDist < 190) {
-          const tractorAlpha = (1 - mDist / 190) * (isLight ? 0.35 : 0.6);
-          ctx.save();
-          const grad = ctx.createLinearGradient(n1.x, n1.y, mouse.x, mouse.y);
-          grad.addColorStop(0, n1.color);
-          grad.addColorStop(1, isLight ? 'rgba(99, 102, 241, 0.1)' : 'rgba(6, 182, 212, 0.2)');
-          ctx.strokeStyle = grad;
-          ctx.lineWidth = (1 - mDist / 190) * 2.2;
-          ctx.shadowColor = n1.color;
-          ctx.shadowBlur = 8;
-          ctx.beginPath();
-          ctx.moveTo(n1.x, n1.y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.stroke();
-          ctx.restore();
-        }
-      }
-
-      // Draw Node Halo
-      const haloAlpha = 0.5 + Math.sin(n1.pulse) * 0.3;
-      ctx.save();
-      ctx.fillStyle = n1.color;
-      ctx.shadowColor = n1.color;
-      ctx.shadowBlur = isLight ? 6 : 14;
-      ctx.globalAlpha = Math.max(0.2, haloAlpha);
-      ctx.beginPath();
-      ctx.arc(n1.x, n1.y, n1.radius, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    }
-
-    // ==========================================
-    // 4. SUPERNOVA MULTI-RING PULSES & SPARKS
-    // ==========================================
+    // 1. Draw Supernova Chromatic Shockwave Rings
     for (let i = supernovas.length - 1; i >= 0; i--) {
-      const s = supernovas[i];
-      s.radius += (s.maxRadius - s.radius) * 0.08 + 2.5;
-      s.alpha *= 0.94;
+      const sn = supernovas[i];
+      sn.radius += sn.growthSpeed;
+      sn.alpha *= 0.94;
+      sn.chromaOffset += 1.2;
 
-      // Draw Chromatic Concentric Rings
-      s.rings.forEach(ring => {
-        const ringRad = Math.max(0, s.radius - ring.offset);
-        if (ringRad > 0 && s.alpha > 0.01) {
-          ctx.save();
-          ctx.strokeStyle = ring.color;
-          ctx.lineWidth = ring.width;
-          ctx.globalAlpha = s.alpha;
-          ctx.shadowColor = ring.color;
-          ctx.shadowBlur = 18;
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, ringRad, 0, Math.PI * 2);
-          ctx.stroke();
-          ctx.restore();
-        }
+      ctx.save();
+      // Chromatic RGB Aberration Rings
+      const ringColors = isLight
+        ? [`rgba(2, 132, 199, ${sn.alpha})`, `rgba(124, 58, 237, ${sn.alpha * 0.8})`, `rgba(225, 29, 72, ${sn.alpha * 0.6})`]
+        : [`rgba(6, 182, 212, ${sn.alpha})`, `rgba(168, 85, 247, ${sn.alpha * 0.85})`, `rgba(244, 63, 94, ${sn.alpha * 0.7})`];
+
+      ringColors.forEach((color, idx) => {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = Math.max(1, 3.5 - idx);
+        ctx.beginPath();
+        ctx.arc(sn.x, sn.y, sn.radius + idx * sn.chromaOffset * 0.4, 0, Math.PI * 2);
+        ctx.stroke();
       });
+      ctx.restore();
 
-      // Draw Radiant Sparks
-      s.sparks.forEach(sp => {
-        sp.dist += sp.speed;
-        sp.alpha *= 0.93;
-        const spX = s.x + Math.cos(sp.angle) * sp.dist;
-        const spY = s.y + Math.sin(sp.angle) * sp.dist;
-
-        if (sp.alpha > 0.02) {
-          ctx.save();
-          ctx.fillStyle = sp.color;
-          ctx.globalAlpha = sp.alpha;
-          ctx.shadowColor = sp.color;
-          ctx.shadowBlur = 10;
-          ctx.beginPath();
-          ctx.arc(spX, spY, sp.size, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.restore();
-        }
-      });
-
-      if (s.alpha < 0.01 || s.radius >= s.maxRadius) {
+      if (sn.alpha < 0.015 || sn.radius > sn.maxRadius) {
         supernovas.splice(i, 1);
       }
     }
 
-    // ==========================================
-    // 5. QUANTUM WARP CORE SINGULARITY AT CURSOR
-    // ==========================================
-    if (mouse.isActive) {
-      ctx.save();
-      // Rotating event-horizon rings around mouse
-      const coreRings = 2;
-      for (let k = 0; k < coreRings; k++) {
-        const rotAngle = time * (0.04 * (k === 0 ? 1 : -1));
-        const rSize = 22 + k * 14 + Math.sin(time * 0.08 + k) * 4;
-        ctx.save();
-        ctx.translate(mouse.x, mouse.y);
-        ctx.rotate(rotAngle);
-        ctx.strokeStyle = k === 0 ? (isLight ? '#6366f1' : '#06b6d4') : (isLight ? '#7c3aed' : '#a855f7');
-        ctx.lineWidth = 1.4;
-        ctx.globalAlpha = isLight ? 0.45 : 0.7;
-        ctx.shadowColor = k === 0 ? '#06b6d4' : '#a855f7';
-        ctx.shadowBlur = 12;
-        ctx.beginPath();
-        ctx.arc(0, 0, rSize, 0, Math.PI * 1.5);
-        ctx.stroke();
-        ctx.restore();
+    // 2. Update and Draw 3D Quantum Nodes & Gravitational Vortex
+    const projectedNodes = [];
+    quantumNodes.forEach(node => {
+      node.pulse += 0.03;
+      node.orbitAngle += node.orbitSpeed;
+
+      // Natural 3D drifting
+      node.x += node.vx + Math.cos(node.orbitAngle) * 0.25;
+      node.y += node.vy + Math.sin(node.orbitAngle) * 0.25;
+      node.z += node.vz;
+
+      // Soft 3D bounds wrapping
+      const xBound = width * 0.65;
+      const yBound = height * 0.65;
+      if (node.x < -xBound) node.x = xBound;
+      if (node.x > xBound) node.x = -xBound;
+      if (node.y < -yBound) node.y = yBound;
+      if (node.y > yBound) node.y = -yBound;
+      if (node.z < -280) node.z = 400;
+      if (node.z > 450) node.z = -250;
+
+      // Projected 2D Position
+      const proj = project3D(node.x, node.y, node.z);
+
+      // Interactive Singularity Gravity Vortex
+      if (mouse.isActive) {
+        const dx = proj.x2d - mouse.x;
+        const dy = proj.y2d - mouse.y;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist < mouse.radius && dist > 2) {
+          const force = (1 - dist / mouse.radius);
+          // Radial pull
+          node.vx -= (dx / dist) * force * 0.45;
+          node.vy -= (dy / dist) * force * 0.45;
+          // Tangent Swirl Vortex Motion
+          const angle = Math.atan2(dy, dx);
+          node.vx += Math.cos(angle + Math.PI / 2) * force * 0.65;
+          node.vy += Math.sin(angle + Math.PI / 2) * force * 0.65;
+        }
       }
 
-      // Core Photonic Sparkles
-      const orbAngle = time * 0.06;
-      const orbDist = 32;
-      const ox = mouse.x + Math.cos(orbAngle) * orbDist;
-      const oy = mouse.y + Math.sin(orbAngle) * orbDist;
-      ctx.fillStyle = '#f59e0b';
-      ctx.shadowColor = '#f59e0b';
-      ctx.shadowBlur = 10;
+      // Velocity damping
+      node.vx *= 0.96;
+      node.vy *= 0.96;
+      node.vz *= 0.96;
+
+      projectedNodes.push({
+        x: proj.x2d,
+        y: proj.y2d,
+        scale: proj.scale,
+        z: proj.z,
+        radius: node.radius * proj.scale,
+        color: node.colorType,
+        pulse: node.pulse
+      });
+    });
+
+    // 3. Draw Synaptic Laser Lightning Filaments & Traveling Photons
+    const nodeLen = projectedNodes.length;
+    const connectThreshold = 125;
+
+    for (let i = 0; i < nodeLen; i++) {
+      const p1 = projectedNodes[i];
+      for (let j = i + 1; j < nodeLen; j++) {
+        const p2 = projectedNodes[j];
+        const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+
+        if (dist < connectThreshold) {
+          const alpha = (1 - dist / connectThreshold) * 0.45 * Math.min(p1.scale, p2.scale);
+          ctx.save();
+          const filamentGrad = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
+          filamentGrad.addColorStop(0, isLight ? `rgba(14, 165, 233, ${alpha})` : `rgba(6, 182, 212, ${alpha})`);
+          filamentGrad.addColorStop(1, isLight ? `rgba(99, 102, 241, ${alpha * 0.8})` : `rgba(168, 85, 247, ${alpha * 0.8})`);
+
+          ctx.strokeStyle = filamentGrad;
+          ctx.lineWidth = Math.max(0.6, 1.6 * ((p1.scale + p2.scale) / 2));
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+
+          // Traveling Laser Photon Sparks
+          if (Math.random() < 0.008) {
+            photonSparks.push({
+              x1: p1.x, y1: p1.y,
+              x2: p2.x, y2: p2.y,
+              progress: 0,
+              speed: Math.random() * 0.04 + 0.02,
+              color: p1.color
+            });
+          }
+          ctx.restore();
+        }
+      }
+
+      // Cursor Lightning Beams to Nearest Nodes
+      if (mouse.isActive) {
+        const mDist = Math.hypot(p1.x - mouse.x, p1.y - mouse.y);
+        if (mDist < 190) {
+          const mAlpha = (1 - mDist / 190) * 0.55 * p1.scale;
+          ctx.save();
+          ctx.strokeStyle = isLight ? `rgba(2, 132, 199, ${mAlpha})` : `rgba(56, 189, 248, ${mAlpha})`;
+          ctx.lineWidth = 1.4 * p1.scale;
+          ctx.shadowColor = '#06b6d4';
+          ctx.shadowBlur = 10;
+          ctx.beginPath();
+          ctx.moveTo(mouse.x, mouse.y);
+          ctx.lineTo(p1.x, p1.y);
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+    }
+
+    // Render Laser Photon Sparks
+    for (let i = photonSparks.length - 1; i >= 0; i--) {
+      const spark = photonSparks[i];
+      spark.progress += spark.speed;
+      const curX = spark.x1 + (spark.x2 - spark.x1) * spark.progress;
+      const curY = spark.y1 + (spark.y2 - spark.y1) * spark.progress;
+
+      ctx.save();
+      ctx.fillStyle = spark.color;
+      ctx.shadowColor = spark.color;
+      ctx.shadowBlur = 8;
       ctx.beginPath();
-      ctx.arc(ox, oy, 2.5, 0, Math.PI * 2);
+      ctx.arc(curX, curY, 2.2, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
+
+      if (spark.progress >= 1) {
+        photonSparks.splice(i, 1);
+      }
     }
+
+    // Render 3D Quantum Nodes
+    projectedNodes.forEach(p => {
+      const glow = Math.sin(p.pulse) * 0.3 + 0.7;
+      ctx.save();
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = Math.min(1, Math.max(0.15, p.scale * glow));
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = isLight ? 4 : 10 * p.scale;
+
+      ctx.beginPath();
+      // Fast cursor warp stretch
+      if (mouse.isActive && mouse.speed > 8) {
+        const angle = Math.atan2(mouseDy, mouseDx);
+        ctx.ellipse(p.x, p.y, p.radius * 2.2, p.radius * 0.8, angle, 0, Math.PI * 2);
+      } else {
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      }
+      ctx.fill();
+      ctx.restore();
+    });
+
+    // 4. Update and Render 3D Floating Crystalline Polyhedra (Wireframe & Prismatic Faces)
+    crystals.forEach(c => {
+      c.rx += c.rotSpeedX;
+      c.ry += c.rotSpeedY;
+      c.rz += c.rotSpeedZ;
+
+      c.x += c.vx;
+      c.y += c.vy;
+      c.z += c.vz;
+
+      // Soft 3D bounds
+      const xBound = width * 0.55;
+      const yBound = height * 0.55;
+      if (c.x < -xBound) c.x = xBound;
+      if (c.x > xBound) c.x = -xBound;
+      if (c.y < -yBound) c.y = yBound;
+      if (c.y > yBound) c.y = -yBound;
+      if (c.z < -160) c.z = 380;
+      if (c.z > 420) c.z = -140;
+
+      // Mouse Gravitational Attraction & Spin Acceleration
+      if (mouse.isActive) {
+        const projCenter = project3D(c.x, c.y, c.z);
+        const dx = projCenter.x2d - mouse.x;
+        const dy = projCenter.y2d - mouse.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < mouse.radius * 1.2 && dist > 10) {
+          const pull = (1 - dist / (mouse.radius * 1.2)) * 0.22;
+          c.vx -= (dx / dist) * pull;
+          c.vy -= (dy / dist) * pull;
+          c.rotSpeedX += (Math.random() - 0.5) * 0.002;
+          c.rotSpeedY += (Math.random() - 0.5) * 0.002;
+        }
+      }
+
+      c.vx *= 0.97;
+      c.vy *= 0.97;
+      c.vz *= 0.97;
+
+      // Transform and Project Vertices
+      const projectedVerts = c.vertices.map(v => {
+        const rotated = rotate3D(v, c.rx, c.ry, c.rz);
+        return project3D(c.x + rotated.x, c.y + rotated.y, c.z + rotated.z);
+      });
+
+      // Draw Translucent Prismatic Faces
+      const faces = [
+        [0, 2, 4], [0, 4, 3], [0, 3, 5], [0, 5, 2],
+        [1, 2, 4], [1, 4, 3], [1, 3, 5], [1, 5, 2]
+      ];
+
+      faces.forEach(f => {
+        const v1 = projectedVerts[f[0]];
+        const v2 = projectedVerts[f[1]];
+        const v3 = projectedVerts[f[2]];
+
+        ctx.save();
+        const faceAlpha = isLight ? 0.06 : 0.12;
+        ctx.fillStyle = isLight ? `hsla(${c.colorHue}, 85%, 55%, ${faceAlpha})` : `hsla(${c.colorHue}, 95%, 65%, ${faceAlpha})`;
+        ctx.beginPath();
+        ctx.moveTo(v1.x2d, v1.y2d);
+        ctx.lineTo(v2.x2d, v2.y2d);
+        ctx.lineTo(v3.x2d, v3.y2d);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      });
+
+      // Draw Glowing Wireframe Edges
+      ctx.save();
+      const avgScale = (projectedVerts[0].scale + projectedVerts[1].scale) / 2;
+      ctx.strokeStyle = isLight ? `hsla(${c.colorHue}, 80%, 45%, 0.45)` : `hsla(${c.colorHue}, 90%, 65%, 0.65)`;
+      ctx.lineWidth = Math.max(0.8, 1.8 * avgScale);
+      ctx.shadowColor = `hsl(${c.colorHue}, 90%, 60%)`;
+      ctx.shadowBlur = isLight ? 3 : 12;
+
+      c.edges.forEach(e => {
+        const v1 = projectedVerts[e[0]];
+        const v2 = projectedVerts[e[1]];
+        ctx.beginPath();
+        ctx.moveTo(v1.x2d, v1.y2d);
+        ctx.lineTo(v2.x2d, v2.y2d);
+        ctx.stroke();
+      });
+
+      // Draw Glowing Vertex Joint Spheres
+      projectedVerts.forEach(v => {
+        ctx.fillStyle = isLight ? '#0284c7' : '#ffffff';
+        ctx.beginPath();
+        ctx.arc(v.x2d, v.y2d, 2.2 * v.scale, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.restore();
+    });
 
     requestAnimationFrame(animate);
   }
