@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCardSpotlight();
   init3DCardTilt();
   initGlobalBackground();
+  initVisitorCounter();
 });
 
 /* ==========================================================================
@@ -1213,4 +1214,74 @@ function initTerminalTypewriter() {
     clearTimeout(typingTimeoutId);
     runTypewriter();
   });
+}
+
+/* ==========================================================================
+   14. Live Viewer / Visitor Counter Dashboard
+   ========================================================================== */
+function initVisitorCounter() {
+  const visitorCountEl = document.getElementById('visitorCount');
+  if (!visitorCountEl) return;
+
+  const BASE_COUNT = 1078;
+  const STORAGE_KEY = 'vasu_portfolio_visitors';
+  const SESSION_KEY = 'vasu_portfolio_session_visited';
+
+  let currentCount = parseInt(localStorage.getItem(STORAGE_KEY), 10);
+  if (isNaN(currentCount) || currentCount < BASE_COUNT) {
+    currentCount = BASE_COUNT;
+  }
+
+  // Increment on new user session
+  if (!sessionStorage.getItem(SESSION_KEY)) {
+    currentCount += 1;
+    localStorage.setItem(STORAGE_KEY, currentCount.toString());
+    sessionStorage.setItem(SESSION_KEY, 'true');
+  }
+
+  // Try optional live cloud hit API for multi-device sync
+  try {
+    fetch('https://api.counterapi.dev/v1/vasu-hapani-portfolio/visits/up')
+      .then(res => res.json())
+      .then(data => {
+        if (data && typeof data.count === 'number') {
+          const apiCount = BASE_COUNT + data.count;
+          if (apiCount > currentCount) {
+            currentCount = apiCount;
+            localStorage.setItem(STORAGE_KEY, currentCount.toString());
+            animateCounter(currentCount);
+          }
+        }
+      })
+      .catch(() => {
+        // Safe graceful fallback to local persistent counter
+      });
+  } catch (err) {
+    // Ignore fetch issues
+  }
+
+  // Smooth count-up animation
+  function animateCounter(target) {
+    const start = Math.max(BASE_COUNT - 60, target - 45);
+    const duration = 850;
+    const startTime = performance.now();
+
+    function update(time) {
+      const elapsed = time - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const count = Math.floor(start + (target - start) * easeOut);
+      visitorCountEl.textContent = count.toLocaleString('en-US');
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        visitorCountEl.textContent = target.toLocaleString('en-US');
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  animateCounter(currentCount);
 }
