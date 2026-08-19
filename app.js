@@ -6,6 +6,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initNavigation();
+  initTerminalTypewriter();
   initSkillsArenaAndFilter();
   initProjectModals();
   initResumeModal();
@@ -1049,4 +1050,167 @@ function initGlobalBackground() {
   }
 
   requestAnimationFrame(animate);
+}
+
+/* ==========================================================================
+   13. Interactive Terminal Code Typewriter Animation
+   ========================================================================== */
+function initTerminalTypewriter() {
+  const terminalBody = document.getElementById('terminalCodeBody');
+  const replayBtn = document.getElementById('replayTypewriterBtn');
+  if (!terminalBody) return;
+
+  const linesData = [
+    [
+      { text: "const ", cls: "code-keyword" },
+      { text: "engineer", cls: "code-prop" },
+      { text: " = {" }
+    ],
+    [
+      { text: "  name", cls: "code-prop" },
+      { text: ': ' },
+      { text: '"Hapani Vasu"', cls: "code-str" },
+      { text: ',' }
+    ],
+    [
+      { text: "  role", cls: "code-prop" },
+      { text: ': ' },
+      { text: '"Frontend Engineer"', cls: "code-str" },
+      { text: ',' }
+    ],
+    [
+      { text: "  internship", cls: "code-prop" },
+      { text: ': ' },
+      { text: '"6Origin (15 Weeks Web Dev)"', cls: "code-str" },
+      { text: ',' }
+    ],
+    [
+      { text: "  coreStack", cls: "code-prop" },
+      { text: ': [' }
+    ],
+    [
+      { text: '    ' },
+      { text: '"React.js"', cls: "code-str" },
+      { text: ', ' },
+      { text: '"Next.js"', cls: "code-str" },
+      { text: ', ' },
+      { text: '"TypeScript"', cls: "code-str" },
+      { text: ',' }
+    ],
+    [
+      { text: '    ' },
+      { text: '"JavaScript (ES6+)"', cls: "code-str" },
+      { text: ', ' },
+      { text: '"Tailwind CSS"', cls: "code-str" },
+      { text: ', ' },
+      { text: '"HTML5/CSS3"', cls: "code-str" }
+    ],
+    [
+      { text: '  ],' }
+    ],
+    [
+      { text: "  location", cls: "code-prop" },
+      { text: ': ' },
+      { text: '"Vadodara, Gujarat (Parul University)"', cls: "code-str" },
+      { text: ',' }
+    ],
+    [
+      { text: "  passion", cls: "code-prop" },
+      { text: ': ' },
+      { text: '"Building responsive, high-performance UI/UX"', cls: "code-str" },
+      { text: ',' }
+    ],
+    [
+      { text: "  readyToJoin", cls: "code-prop" },
+      { text: ': ' },
+      { text: 'true', cls: "code-num" }
+    ],
+    [
+      { text: '};' }
+    ]
+  ];
+
+  let isTyping = false;
+  let typingTimeoutId = null;
+
+  function runTypewriter() {
+    if (isTyping) return;
+    isTyping = true;
+    clearTimeout(typingTimeoutId);
+    terminalBody.innerHTML = '';
+
+    let lineIndex = 0;
+    let tokenIndex = 0;
+    let charIndex = 0;
+
+    let currentLineEl = document.createElement('span');
+    currentLineEl.className = 'code-line';
+    terminalBody.appendChild(currentLineEl);
+
+    const cursor = document.createElement('span');
+    cursor.className = 'typewriter-cursor';
+    currentLineEl.appendChild(cursor);
+
+    let currentTokenSpan = null;
+
+    function typeNextChar() {
+      if (lineIndex >= linesData.length) {
+        isTyping = false;
+        return;
+      }
+
+      const line = linesData[lineIndex];
+
+      if (tokenIndex >= line.length) {
+        lineIndex++;
+        tokenIndex = 0;
+        charIndex = 0;
+        currentTokenSpan = null;
+
+        if (lineIndex < linesData.length) {
+          currentLineEl = document.createElement('span');
+          currentLineEl.className = 'code-line';
+          terminalBody.appendChild(currentLineEl);
+          currentLineEl.appendChild(cursor);
+          typingTimeoutId = setTimeout(typeNextChar, 50);
+        } else {
+          isTyping = false;
+        }
+        return;
+      }
+
+      const token = line[tokenIndex];
+
+      if (!currentTokenSpan) {
+        currentTokenSpan = document.createElement('span');
+        if (token.cls) currentTokenSpan.className = token.cls;
+        currentLineEl.insertBefore(currentTokenSpan, cursor);
+      }
+
+      if (charIndex < token.text.length) {
+        currentTokenSpan.textContent += token.text[charIndex];
+        charIndex++;
+        const char = token.text[charIndex - 1];
+        const delay = (char === ',' || char === ':') ? 35 : (char === ' ' ? 8 : 14);
+        typingTimeoutId = setTimeout(typeNextChar, delay);
+      } else {
+        tokenIndex++;
+        charIndex = 0;
+        currentTokenSpan = null;
+        typingTimeoutId = setTimeout(typeNextChar, 6);
+      }
+    }
+
+    typingTimeoutId = setTimeout(typeNextChar, 250);
+  }
+
+  // Run on page load
+  runTypewriter();
+
+  // Replay button support
+  replayBtn?.addEventListener('click', () => {
+    isTyping = false;
+    clearTimeout(typingTimeoutId);
+    runTypewriter();
+  });
 }
