@@ -541,6 +541,22 @@ const projectData = {
       'Created intuitive donor submission forms with batch numbers, expiry dates, and real-time MongoDB database persistence.',
       'Addressed a critical public health challenge through clean engineering and streamlined logistics.'
     ]
+  },
+  'apex-tournament': {
+    title: 'Apex Velocity — Grand Prix Auction 2026',
+    badge: 'Real-Time Telemetry & 60FPS Canvas Engine',
+    image: 'assets/images/apex-tournament.jpg',
+    github: 'https://github.com/vasu1602/apex-tournament',
+    overview: 'High-octane real-time racing tournament auction platform featuring dynamic team purse budgeting, live driver auction gavel, role delegation, multi-window telemetry sync via BroadcastChannel API, and an animated 60+ FPS speedway canvas background.',
+    techStack: ['JavaScript (ES6+)', 'HTML5 Canvas (60FPS)', 'BroadcastChannel API', 'CSS3 Animations', 'State Machines', 'Vercel Serverless'],
+    architecture: 'Decoupled event-driven client state machine synchronized across browser windows in real-time with BroadcastChannel and Vercel serverless persistence.',
+    features: [
+      'Engineered a live auctioneer & spectator bidding arena with real-time gavel hammer-down validation.',
+      'Implemented Multi-Window Telemetry Sync using the BroadcastChannel API for zero-latency cross-tab coordination between judges, auctioneers, and spectator screens.',
+      'Constructed dynamic team purse management with hard-limit overdraft prevention and Tier S/A/B/C/D driver classifications.',
+      'Built a high-performance 60+ FPS HTML5 Canvas racetrack background featuring animated sports cars, nitro flame bursts, and glowing neon light trails.',
+      'Created Race Control Admin Panel for managing live rosters, modifying starting budgets, and controlling tournament stages.'
+    ]
   }
 };
 
@@ -585,8 +601,9 @@ function initProjectModals() {
           ${project.features.map(f => `<li>${f}</li>`).join('')}
         </ul>
 
-        <div style="margin-top: 1.75rem; display: flex; gap: 0.75rem; justify-content: flex-end;">
+        <div style="margin-top: 1.75rem; display: flex; gap: 0.75rem; justify-content: flex-end; flex-wrap: wrap;">
           <button class="btn btn-secondary btn-sm" id="closeModalInnerBtn">Close Specs</button>
+          ${project.github ? `<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.4rem;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg> GitHub Repo</a>` : ''}
           <a href="#contact" class="btn btn-primary btn-sm" id="discussProjectBtn">Discuss with Vasu</a>
         </div>
       `;
