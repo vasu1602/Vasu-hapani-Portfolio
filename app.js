@@ -166,13 +166,13 @@ function initSkillsArenaAndFilter() {
   // Preload Official Vector SVG Logos for Razor-Sharp Canvas Rendering
   const svgIcons = {
     react: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115.3 100"><ellipse cx="57.65" cy="50" rx="14" ry="46.5" transform="rotate(30 57.65 50)" fill="none" stroke="%2361DAFB" stroke-width="6"/><ellipse cx="57.65" cy="50" rx="14" ry="46.5" transform="rotate(90 57.65 50)" fill="none" stroke="%2361DAFB" stroke-width="6"/><ellipse cx="57.65" cy="50" rx="14" ry="46.5" transform="rotate(150 57.65 50)" fill="none" stroke="%2361DAFB" stroke-width="6"/><circle cx="57.65" cy="50" r="8" fill="%2361DAFB"/></svg>`,
+    nextjs: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180"><circle cx="90" cy="90" r="90" fill="%23000000"/><path fill="%23FFFFFF" d="M149.5 149.5L78.8 54H54v72h14.4V72.2l62.4 78.5c5.9-4 11.3-8.8 16-14.2z"/><path fill="%23FFFFFF" d="M115.2 54h14.4v72h-14.4z"/></svg>`,
+    typescript: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect width="24" height="24" rx="3" fill="%233178C6"/><path d="M13.5 10.5h-3v9h-2.2v-9h-3V8.8h8.2v1.7zm7.5 3.3c-.2-.7-.7-1.2-1.3-1.6-.6-.4-1.4-.6-2.4-.6-.7 0-1.3.1-1.8.4-.5.3-.7.8-.7 1.3 0 .4.2.8.6 1 .4.3 1 .5 1.7.8l1.1.4c1.2.4 2.1 1 2.7 1.6.5.7.8 1.5.8 2.5 0 1.4-.5 2.4-1.5 3.1-1 .7-2.3 1-3.9 1-1.5 0-2.8-.4-3.8-1-1-.7-1.7-1.6-2.1-2.8l2.2-1.2c.3.8.7 1.4 1.4 1.8.6.4 1.5.6 2.4.6.8 0 1.5-.2 2-.6.5-.4.8-.9.8-1.5 0-.5-.2-.9-.6-1.1-.4-.3-1-.5-1.8-.8l-1.1-.4c-1.2-.4-2.1-1-2.6-1.6-.6-.6-.8-1.5-.8-2.4 0-1.2.5-2.2 1.5-2.9 1-.7 2.2-1.1 3.7-1.1 1.3 0 2.4.3 3.3.9 1 .6 1.6 1.4 2 2.4l-2.2 1.2z" fill="%23ffffff"/></svg>`,
     javascript: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect width="24" height="24" rx="3" fill="%23F7DF1E"/><path d="M12.5 17.5c.5.8 1.2 1.3 2.3 1.3 1.2 0 1.9-.6 1.9-1.5 0-1-.8-1.4-2.2-2l-.7-.3c-2.1-.9-3.5-2-3.5-4.4 0-2.2 1.7-3.9 4.3-3.9 1.9 0 3.2.7 4.1 2.3l-2 1.3c-.5-.8-1-1.2-2.1-1.2-.9 0-1.6.6-1.6 1.3 0 .8.6 1.2 1.9 1.8l.7.3c2.4 1 3.9 2.2 3.9 4.7 0 2.7-2.1 4.2-4.7 4.2-2.6 0-4.3-1.3-5-2.9l2.3-1.2zm-6.6.2c.4.7.8 1.2 1.7 1.2.8 0 1.4-.3 1.4-1.7V6.9h2.8v10.4c0 2.8-1.7 4-4 4-2.2 0-3.6-1.1-4.3-2.6l2.4-1z" fill="%23000000"/></svg>`,
-    nodejs: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="%23539E43" d="M16 2.5l12 6.9v13.8l-12 6.9-12-6.9v-13.8z"/><path fill="%23FFFFFF" d="M15.4 10.3c-.4 0-.8.1-1.1.3l-4 2.3c-.4.2-.6.7-.6 1.1v4.6c0 .5.2.9.6 1.1l4 2.3c.3.2.7.3 1.1.3.4 0 .8-.1 1.1-.3l4-2.3c.4-.2.6-.7.6-1.1v-4.6c0-.5-.2-.9-.6-1.1l-4-2.3c-.3-.2-.7-.3-1.1-.3zm-.2 2.1l3.2 1.8-3.2 1.8-3.2-1.8 3.2-1.8zm-3.8 3.3l3.2 1.8v3.7l-3.2-1.8v-3.7zm4.4 5.5v-3.7l3.2-1.8v3.7l-3.2 1.8z"/></svg>`,
     html5: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23E34F26" d="M1.5 0h21l-1.9 21.3L12 24l-8.6-2.7z"/><path fill="%23EF652A" d="M12 22.1l7.1-2.2 1.6-18H12z"/><path fill="%23ECECEC" d="M12 9.5H8.3l-.2-2.7H12V4.3H5.3l.8 8.1H12zm0 7.3l-3.9-1-.3-3.2H5.3l.5 5.8 6.2 1.7z"/><path fill="%23FFFFFF" d="M12 9.5h3.7l-.3 3.9-3.4.9v2.9l6.2-1.7.5-5.9H12zm0-5.2v2.5h6.4l.2-2.5z"/></svg>`,
     css3: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%231572B6" d="M1.5 0h21l-1.9 21.3L12 24l-8.6-2.7z"/><path fill="%2333A9DC" d="M12 22.1l7.1-2.2 1.6-18H12z"/><path fill="%23ECECEC" d="M12 9.5H8.3l-.2-2.7H12V4.3H5.3l.8 8.1H12zm0 7.3l-3.9-1-.3-3.2H5.3l.5 5.8 6.2 1.7z"/><path fill="%23FFFFFF" d="M12 9.5h3.7l-.3 3.9-3.4.9v2.9l6.2-1.7.5-5.9H12zm0-5.2v2.5h6.4l.2-2.5z"/></svg>`,
     bootstrap: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%237952B3" d="M3.6 0h16.8C22.4 0 24 1.6 24 3.6v16.8c0 2-1.6 3.6-3.6 3.6H3.6C1.6 24 0 22.4 0 20.4V3.6C0 1.6 1.6 0 3.6 0z"/><path fill="%23FFFFFF" d="M15.4 12.3c.8-.6 1.3-1.5 1.3-2.6 0-2.2-1.8-3.7-4.4-3.7H7.5v12h5.3c2.7 0 4.7-1.6 4.7-3.9 0-1.4-.8-2.5-2.1-3.1v-.1zm-4.7-4c1.1 0 1.9.7 1.9 1.8s-.8 1.8-1.9 1.8h-2.1V8.3h2.1zm.4 7.4h-2.5v-3.7h2.5c1.3 0 2.2.8 2.2 2s-.9 1.7-2.2 1.7z"/></svg>`,
     tailwind: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%2306B6D4" d="M12 6c-2.4 0-3.9 1.2-4.5 3.6 1-.8 2.1-1.1 3.3-.8.7.2 1.2.7 1.7 1.3C13.4 11.2 14.8 13 18 13c2.4 0 3.9-1.2 4.5-3.6-1 .8-2.1 1.1-3.3.8-.7-.2-1.2-.7-1.7-1.3C16.6 7.8 15.2 6 12 6zm-6 7c-2.4 0-3.9 1.2-4.5 3.6 1-.8 2.1-1.1 3.3-.8.7.2 1.2.7 1.7 1.3 1 1.1 2.4 2.9 5.5 2.9 2.4 0 3.9-1.2 4.5-3.6-1 .8-2.1 1.1-3.3.8-.7-.2-1.2-.7-1.7-1.3-1-1.1-2.4-2.9-5.5-2.9z"/></svg>`,
-    mongodb: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%2347A248" d="M12 0C12 0 6.5 6.5 6.5 13.5c0 4.1 2.4 7.7 5.5 9.8.4-.5.8-1 1-1.7V.8c-.3-.3-.7-.6-1-.8zm1 23.3c3.1-2.1 5.5-5.7 5.5-9.8 0-7-5.5-13.5-5.5-13.5v23.3z"/></svg>`,
     git: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23F05032" d="M23.5 10.7L13.3.5c-.7-.7-1.8-.7-2.5 0L8.5 2.8 11 5.3c.7-.2 1.6 0 2.2.6.6.6.8 1.4.6 2.2l2.4 2.4c.8-.2 1.6 0 2.2.6 1 1 1 2.5 0 3.5-.9 1-2.5 1-3.5 0-.7-.7-.9-1.6-.7-2.4L11.8 9.8v5.5c.2.2.3.4.4.7 1 1 1 2.5 0 3.5-1 1-2.5 1-3.5 0-1-1-1-2.5 0-3.5.3-.3.8-.5 1.3-.6V9.6c-.5-.1-1-.3-1.3-.6-.7-.7-.9-1.6-.7-2.4L5.6 4.2.5 9.3c-.7.7-.7 1.8 0 2.5l10.2 10.2c.7.7 1.8.7 2.5 0l10.3-10.3c.7-.7.7-1.8 0-2.5z"/></svg>`
   };
 
@@ -183,17 +183,17 @@ function initSkillsArenaAndFilter() {
     loadedImages[key] = img;
   });
 
-  // Curated 9 Skills specified by User with official branding
+  // Curated 9 Modern Frontend Skills
   const skillsList = [
-    { label: 'React.js', iconKey: 'react', category: 'frontend', color: '#61DAFB', glow: 'rgba(97, 218, 251, 0.5)' },
-    { label: 'JavaScript', iconKey: 'javascript', category: 'frontend backend', color: '#F7DF1E', glow: 'rgba(247, 223, 30, 0.5)' },
-    { label: 'Node.js', iconKey: 'nodejs', category: 'backend', color: '#539E43', glow: 'rgba(83, 158, 67, 0.5)' },
-    { label: 'HTML5', iconKey: 'html5', category: 'frontend', color: '#E34F26', glow: 'rgba(227, 79, 38, 0.5)' },
-    { label: 'CSS3', iconKey: 'css3', category: 'frontend', color: '#1572B6', glow: 'rgba(21, 114, 182, 0.5)' },
-    { label: 'Bootstrap', iconKey: 'bootstrap', category: 'frontend', color: '#7952B3', glow: 'rgba(121, 82, 179, 0.5)' },
-    { label: 'Tailwind CSS', iconKey: 'tailwind', category: 'frontend', color: '#06B6D4', glow: 'rgba(6, 182, 212, 0.5)' },
-    { label: 'MongoDB', iconKey: 'mongodb', category: 'backend', color: '#47A248', glow: 'rgba(71, 162, 72, 0.5)' },
-    { label: 'Git & GitHub', iconKey: 'git', category: 'tools', color: '#F05032', glow: 'rgba(240, 80, 50, 0.5)' }
+    { label: 'React.js', iconKey: 'react', category: 'react', color: '#61DAFB', glow: 'rgba(97, 218, 251, 0.5)' },
+    { label: 'Next.js', iconKey: 'nextjs', category: 'react', color: '#FFFFFF', glow: 'rgba(255, 255, 255, 0.5)' },
+    { label: 'TypeScript', iconKey: 'typescript', category: 'languages', color: '#3178C6', glow: 'rgba(49, 120, 198, 0.5)' },
+    { label: 'JavaScript', iconKey: 'javascript', category: 'languages', color: '#F7DF1E', glow: 'rgba(247, 223, 30, 0.5)' },
+    { label: 'HTML5', iconKey: 'html5', category: 'languages styling', color: '#E34F26', glow: 'rgba(227, 79, 38, 0.5)' },
+    { label: 'CSS3', iconKey: 'css3', category: 'styling', color: '#1572B6', glow: 'rgba(21, 114, 182, 0.5)' },
+    { label: 'Tailwind CSS', iconKey: 'tailwind', category: 'styling', color: '#06B6D4', glow: 'rgba(6, 182, 212, 0.5)' },
+    { label: 'Bootstrap', iconKey: 'bootstrap', category: 'styling', color: '#7952B3', glow: 'rgba(121, 82, 179, 0.5)' },
+    { label: 'Git & GitHub', iconKey: 'git', category: 'styling', color: '#F05032', glow: 'rgba(240, 80, 50, 0.5)' }
   ];
 
   class ArenaSkillBubble {
