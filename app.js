@@ -509,43 +509,30 @@ function initSkillsArenaAndFilter() {
 }
 
 /* ==========================================================================
-   6. Project Deep Dive Modal System
+   6. Project Deep Dive Modal System with 4-Photo Carousel
    ========================================================================== */
 const projectData = {
-  'car-rental': {
-    title: 'Luxury Car Booking & Rental Platform',
-    badge: '15-Week Internship Flagship • 6Origin',
-    image: 'assets/images/car-rental.jpg',
-    overview: 'An end-to-end web application developed from the ground up over a 15-week internship at 6Origin. Engineered to deliver a high-end booking and fleet management experience with seamless user authentication and media hosting.',
-    techStack: ['React.js', 'Tailwind CSS', 'Node.js', 'Express.js', 'JWT Auth', 'Firebase Storage', 'REST APIs'],
-    architecture: 'Modular MERN architecture separating responsive UI views from secure REST endpoints. Token-based session management guarantees authenticated booking workflows.',
-    features: [
-      'Individually constructed responsive frontend with React.js component lifecycle and Tailwind CSS utility styling.',
-      'Designed and deployed high-performance Node.js & Express.js REST API with robust route protection.',
-      'Implemented JSON Web Tokens (JWT) for secure user login, signup, and persistent authorization.',
-      'Integrated Firebase Storage for high-speed luxury vehicle image and document asset uploads.',
-      'Real-world business requirements converted into clean, production-ready full-stack software.'
-    ]
-  },
-  'medicine-donation': {
-    title: 'Unused Medicine Donation Platform',
-    badge: 'Agile Team Collaboration • Public Health Tech',
-    image: 'assets/images/medicine-donation.jpg',
-    overview: 'A social-impact web application designed to combat medicine wastage by connecting individual medicine donors with verified NGOs for redistribution to underserved communities.',
-    techStack: ['HTML5', 'CSS3', 'JavaScript (ES6+)', 'Node.js', 'Express.js', 'MongoDB', 'Agile Methodology'],
-    architecture: '4-tier web architecture featuring donor/NGO portal interfaces, Express REST middleware, and MongoDB document databases for real-time medicine inventory tracking.',
-    features: [
-      'Collaborated within an Agile team of 4, dividing tasks into dedicated frontend and backend sprints.',
-      'Implemented secure donor and NGO authentication portals with role-based routing.',
-      'Constructed a dynamic medicine tracking dashboard displaying donation status (Donated, Verified, Assigned, Delivered).',
-      'Created intuitive donor submission forms with batch numbers, expiry dates, and real-time MongoDB database persistence.',
-      'Addressed a critical public health challenge through clean engineering and streamlined logistics.'
-    ]
-  },
   'apex-tournament': {
     title: 'Apex Velocity — Grand Prix Auction 2026',
     badge: 'Real-Time Telemetry & 60FPS Canvas Engine',
-    image: 'assets/images/apex-tournament.jpg',
+    images: [
+      {
+        src: 'assets/images/apex-slide-1.png',
+        title: 'Live Auction Arena & Driver Pool (Tier S–D Bidding)'
+      },
+      {
+        src: 'assets/images/apex-slide-2.png',
+        title: 'Qualifiers — Championship Matches & Live Standings'
+      },
+      {
+        src: 'assets/images/apex-slide-3.png',
+        title: 'Head-to-Head Draw Slots & Real-Time Fixtures'
+      },
+      {
+        src: 'assets/images/apex-slide-4.png',
+        title: 'Racing Teams & Purse Budget Balances'
+      }
+    ],
     github: 'https://github.com/vasu1602/apex-tournament',
     overview: 'High-octane real-time racing tournament auction platform featuring dynamic team purse budgeting, live driver auction gavel, role delegation, multi-window telemetry sync via BroadcastChannel API, and an animated 60+ FPS speedway canvas background.',
     techStack: ['JavaScript (ES6+)', 'HTML5 Canvas (60FPS)', 'BroadcastChannel API', 'CSS3 Animations', 'State Machines', 'Vercel Serverless'],
@@ -567,6 +554,26 @@ function initProjectModals() {
   const closeBtn = document.getElementById('closeProjectModalBtn');
   const triggerBtns = document.querySelectorAll('.btn-project-detail');
 
+  let activeCarouselImages = [];
+  let currentSlideIndex = 0;
+
+  function updateCarouselSlide(index) {
+    if (!activeCarouselImages.length) return;
+    if (index < 0) index = activeCarouselImages.length - 1;
+    if (index >= activeCarouselImages.length) index = 0;
+    currentSlideIndex = index;
+
+    const slides = modalProjectBody.querySelectorAll('.modal-carousel-slide');
+    const dots = modalProjectBody.querySelectorAll('.modal-dot');
+    const caption = modalProjectBody.querySelector('#carouselCaption');
+
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === currentSlideIndex));
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === currentSlideIndex));
+    if (caption) {
+      caption.textContent = `${currentSlideIndex + 1}/${activeCarouselImages.length}: ${activeCarouselImages[currentSlideIndex].title}`;
+    }
+  }
+
   triggerBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const projectId = btn.getAttribute('data-project');
@@ -574,9 +581,35 @@ function initProjectModals() {
 
       if (!project) return;
 
+      activeCarouselImages = project.images || [{ src: project.image, title: project.title }];
+      currentSlideIndex = 0;
+
       modalProjectTitle.textContent = project.title;
       modalProjectBody.innerHTML = `
-        <img src="${project.image}" alt="${project.title}" class="modal-project-img">
+        <div class="modal-carousel" id="modalCarousel">
+          <div class="modal-carousel-track">
+            ${activeCarouselImages.map((img, idx) => `
+              <div class="modal-carousel-slide ${idx === 0 ? 'active' : ''}" data-index="${idx}">
+                <img src="${img.src}" alt="${img.title}" class="modal-carousel-img">
+              </div>
+            `).join('')}
+            <button class="modal-carousel-btn modal-carousel-prev" id="carouselPrevBtn" aria-label="Previous Slide">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button class="modal-carousel-btn modal-carousel-next" id="carouselNextBtn" aria-label="Next Slide">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+          <div class="modal-carousel-footer">
+            <span class="modal-carousel-caption" id="carouselCaption">1/${activeCarouselImages.length}: ${activeCarouselImages[0].title}</span>
+            <div class="modal-carousel-dots" id="carouselDots">
+              ${activeCarouselImages.map((_, idx) => `
+                <button class="modal-dot ${idx === 0 ? 'active' : ''}" data-slide="${idx}" aria-label="Slide ${idx + 1}"></button>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
         <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
           ${project.techStack.map(t => `<span class="project-tag">${t}</span>`).join('')}
         </div>
@@ -608,6 +641,29 @@ function initProjectModals() {
         </div>
       `;
 
+      // Carousel controls setup
+      const prevBtn = modalProjectBody.querySelector('#carouselPrevBtn');
+      const nextBtn = modalProjectBody.querySelector('#carouselNextBtn');
+      const dotBtns = modalProjectBody.querySelectorAll('.modal-dot');
+
+      prevBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateCarouselSlide(currentSlideIndex - 1);
+      });
+
+      nextBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateCarouselSlide(currentSlideIndex + 1);
+      });
+
+      dotBtns.forEach(d => {
+        d.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const target = parseInt(d.getAttribute('data-slide'), 10);
+          updateCarouselSlide(target);
+        });
+      });
+
       document.getElementById('closeModalInnerBtn')?.addEventListener('click', closeProjectModal);
       document.getElementById('discussProjectBtn')?.addEventListener('click', () => {
         closeProjectModal();
@@ -638,8 +694,14 @@ function initProjectModals() {
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && projectModal.classList.contains('open')) {
-      closeProjectModal();
+    if (projectModal.classList.contains('open')) {
+      if (e.key === 'Escape') {
+        closeProjectModal();
+      } else if (e.key === 'ArrowLeft') {
+        updateCarouselSlide(currentSlideIndex - 1);
+      } else if (e.key === 'ArrowRight') {
+        updateCarouselSlide(currentSlideIndex + 1);
+      }
     }
   });
 }
