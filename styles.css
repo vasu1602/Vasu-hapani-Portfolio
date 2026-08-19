@@ -1464,13 +1464,29 @@ a {
   font-size: 0.8125rem;
   font-weight: 600;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: all var(--transition-fast);
+}
+
+.contact-copy-btn.icon-only {
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0;
+  flex-shrink: 0;
 }
 
 .contact-copy-btn:hover {
   color: var(--text-primary);
-  border-color: var(--text-primary);
+  border-color: var(--accent-primary);
   background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.contact-copy-btn.copied {
+  border-color: var(--accent-secondary) !important;
+  background: rgba(6, 182, 212, 0.15) !important;
 }
 
 /* --- Footer --- */

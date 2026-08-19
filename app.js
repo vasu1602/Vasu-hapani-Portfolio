@@ -649,17 +649,17 @@ function initCopyButtons() {
   copyButtons.forEach(btn => {
     btn.addEventListener('click', async () => {
       const textToCopy = btn.getAttribute('data-copy');
+      const originalHTML = btn.innerHTML;
       try {
         await navigator.clipboard.writeText(textToCopy);
-        const originalText = btn.textContent;
-        btn.textContent = 'Copied! ✓';
-        btn.style.color = 'var(--accent-secondary)';
+        btn.innerHTML = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-secondary);"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        btn.classList.add('copied');
         showToast(`Copied to clipboard: ${textToCopy}`);
 
         setTimeout(() => {
-          btn.textContent = originalText;
-          btn.style.color = '';
-        }, 2500);
+          btn.innerHTML = originalHTML;
+          btn.classList.remove('copied');
+        }, 2200);
       } catch (err) {
         const textArea = document.createElement('textarea');
         textArea.value = textToCopy;
