@@ -1886,16 +1886,24 @@ a {
   }
 }
 
-/* --- Print & PDF Stylesheet for Resume (Zero Blank Pages) --- */
+/* --- Print & PDF Stylesheet for Resume (Exact 1-to-1 Website Modal Match) --- */
 @media print {
   @page {
     size: A4 portrait;
-    margin: 12mm 15mm;
+    margin: 14mm 18mm;
+  }
+
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    box-sizing: border-box !important;
   }
 
   html, body {
     background: #ffffff !important;
     color: #0f172a !important;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
     margin: 0 !important;
     padding: 0 !important;
     width: 100% !important;
@@ -1967,81 +1975,92 @@ a {
 
   .resume-sheet {
     background: #ffffff !important;
-    color: #0f172a !important;
+    color: #1e293b !important;
     border: none !important;
     box-shadow: none !important;
     padding: 0 !important;
     margin: 0 !important;
     width: 100% !important;
-    font-size: 10pt !important;
-    line-height: 1.4 !important;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+    font-size: 9.5pt !important;
+    line-height: 1.5 !important;
   }
 
+  /* Exact 2-Column Header matching website */
   .resume-header {
     border-bottom: 2px solid #0f172a !important;
-    padding-bottom: 6pt !important;
-    margin-bottom: 10pt !important;
+    padding-bottom: 10pt !important;
+    margin-bottom: 14pt !important;
     display: flex !important;
+    flex-direction: row !important;
     justify-content: space-between !important;
     align-items: flex-start !important;
   }
 
   .resume-name {
     color: #0f172a !important;
-    font-size: 18pt !important;
+    font-size: 20pt !important;
     font-weight: 800 !important;
-    margin-bottom: 2pt !important;
+    line-height: 1.1 !important;
+    margin-bottom: 3pt !important;
+    letter-spacing: -0.02em !important;
   }
 
   .resume-role {
-    color: #2563eb !important;
-    font-size: 11pt !important;
+    color: #4f46e5 !important;
+    font-size: 11.5pt !important;
     font-weight: 700 !important;
   }
 
   .resume-contact-block {
-    color: #334155 !important;
-    font-size: 8.5pt !important;
-    line-height: 1.35 !important;
+    color: #475569 !important;
+    font-size: 8.75pt !important;
+    line-height: 1.5 !important;
     text-align: right !important;
+  }
+
+  .resume-contact-block strong {
+    color: #0f172a !important;
   }
 
   .resume-section-title {
     color: #0f172a !important;
     border-bottom: 1.5px solid #cbd5e1 !important;
-    font-size: 10pt !important;
-    font-weight: 700 !important;
-    margin-top: 10pt !important;
-    margin-bottom: 5pt !important;
-    padding-bottom: 2pt !important;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: 10.5pt !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    margin-top: 13pt !important;
+    margin-bottom: 6pt !important;
+    padding-bottom: 3pt !important;
   }
 
   .resume-p {
     color: #334155 !important;
     font-size: 9pt !important;
-    line-height: 1.4 !important;
-    margin-bottom: 4pt !important;
+    line-height: 1.48 !important;
+    margin-bottom: 6pt !important;
   }
 
   .resume-item {
-    margin-bottom: 6pt !important;
-    page-break-inside: avoid;
-    break-inside: avoid;
+    margin-bottom: 8pt !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 
   .resume-item-top {
     font-weight: 700 !important;
     color: #0f172a !important;
-    font-size: 9.5pt !important;
+    font-size: 9.75pt !important;
     display: flex !important;
+    flex-direction: row !important;
     justify-content: space-between !important;
+    align-items: center !important;
   }
 
   .resume-item-sub {
-    color: #475569 !important;
-    font-size: 8.5pt !important;
+    color: #4f46e5 !important;
+    font-size: 8.75pt !important;
     font-weight: 600 !important;
     margin-bottom: 3pt !important;
   }
@@ -2049,17 +2068,18 @@ a {
   .resume-skills-list {
     display: flex !important;
     flex-wrap: wrap !important;
-    gap: 3pt !important;
+    gap: 4pt !important;
   }
 
   .resume-skill-badge {
     background: #f1f5f9 !important;
     color: #0f172a !important;
     border: 1px solid #cbd5e1 !important;
-    font-size: 8pt !important;
-    padding: 2pt 5pt !important;
+    font-size: 8.5pt !important;
+    padding: 2.5pt 6.5pt !important;
     border-radius: 3pt !important;
     font-weight: 600 !important;
+    display: inline-block !important;
   }
 }
 
