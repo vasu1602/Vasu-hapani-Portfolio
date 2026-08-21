@@ -544,6 +544,28 @@ const projectData = {
       'Built a high-performance 60+ FPS HTML5 Canvas racetrack background featuring animated sports cars, nitro flame bursts, and glowing neon light trails.',
       'Created Race Control Admin Panel for managing live rosters, modifying starting budgets, and controlling tournament stages.'
     ]
+  },
+  'get-your-drive': {
+    title: 'Get Your Drive — Luxury Car Rental & Fleet Platform',
+    badge: 'Full-Stack • Firebase Realtime Database',
+    images: [
+      {
+        src: 'assets/images/get-your-drive.jpg',
+        title: 'Get Your Drive — Glassmorphic Fleet & 3-Step OTP Verification'
+      }
+    ],
+    github: 'https://github.com/vasu1602/Get-your-Drive',
+    liveDemo: 'https://get-your-drive.netlify.app',
+    overview: 'A modern full-stack luxury car rental web application featuring rich glassmorphism design, real-time Firebase Realtime Database cloud synchronization, 6-digit OTP email verification via Resend.com / Gmail SMTP, interactive HTML5 Canvas photo cropping, dynamic fleet management, and instant booking vouchers.',
+    techStack: ['JavaScript', 'Node.js', 'Firebase', 'Netlify', 'HTML5 Canvas', 'REST APIs'],
+    architecture: 'Client-server architecture combining Netlify/Express serverless functions with Firebase Realtime Database bidirectional cloud sync and JWT session persistence.',
+    features: [
+      'Engineered a 3-step OTP verification and account security flow with Resend API / Gmail SMTP and bcrypt password hashing.',
+      'Built bidirectional live cloud synchronization with Firebase Realtime Database for users, vehicle specs, reservations, and audit activity logs.',
+      'Implemented dynamic fleet catalog with category filtering (Sedans, SUVs, EVs, Sports, Luxury), live search, and dynamic date-based price calculation.',
+      'Constructed an interactive HTML5 Canvas photo cropper with drag-to-pan, 1x–3x zoom slider, 90° rotation, and client-side compression for user avatars and fleet uploads.',
+      'Deployed production-ready full-stack application on Netlify with serverless API functions and instant booking confirmation vouchers.'
+    ]
   }
 };
 
@@ -636,6 +658,7 @@ function initProjectModals() {
 
         <div style="margin-top: 1.75rem; display: flex; gap: 0.75rem; justify-content: flex-end; flex-wrap: wrap;">
           <button class="btn btn-secondary btn-sm" id="closeModalInnerBtn">Close Specs</button>
+          ${project.liveDemo ? `<a href="${project.liveDemo}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.4rem;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Live Demo</a>` : ''}
           ${project.github ? `<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.4rem;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg> GitHub Repo</a>` : ''}
           <a href="#contact" class="btn btn-primary btn-sm" id="discussProjectBtn">Discuss with Vasu</a>
         </div>
