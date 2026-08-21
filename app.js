@@ -534,6 +534,7 @@ const projectData = {
       }
     ],
     github: 'https://github.com/vasu1602/apex-tournament',
+    liveDemo: 'https://apex-tournament-ten.vercel.app/',
     overview: 'High-octane real-time racing tournament auction platform featuring dynamic team purse budgeting, live driver auction gavel, role delegation, multi-window telemetry sync via BroadcastChannel API, and an animated 60+ FPS speedway canvas background.',
     techStack: ['JavaScript', 'HTML', 'CSS', 'Realtime', 'Vercel'],
     architecture: 'Decoupled event-driven client state machine synchronized across browser windows in real-time with BroadcastChannel and Vercel serverless persistence.',
