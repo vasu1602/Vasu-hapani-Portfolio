@@ -550,8 +550,20 @@ const projectData = {
     badge: 'Full-Stack • Firebase Realtime Database',
     images: [
       {
-        src: 'assets/images/get-your-drive.jpg',
-        title: 'Get Your Drive — Glassmorphic Fleet & 3-Step OTP Verification'
+        src: 'assets/images/get-your-drive-slide-1.png',
+        title: 'Fleet Discovery, Category Filters & Dynamic Search'
+      },
+      {
+        src: 'assets/images/get-your-drive-slide-2.png',
+        title: '3-Step 6-Digit OTP Email Verification Flow'
+      },
+      {
+        src: 'assets/images/get-your-drive-slide-3.png',
+        title: 'Secure Account Creation & Password Setup'
+      },
+      {
+        src: 'assets/images/get-your-drive-slide-4.png',
+        title: 'Dynamic Vehicle Listing & Built-in HTML5 Photo Cropper'
       }
     ],
     github: 'https://github.com/vasu1602/Get-your-Drive',
